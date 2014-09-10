@@ -27,5 +27,3 @@ Optionally you can run:
 	./install.ksh
 	
 to copy Seagull binaries and config files as suggested in `INSTALL.TXT` and perform the remaining actions, if needed.
-
-This has been tested against Seagull 1.8.2 on Mac OS X 10.9.4 (Mavericks) with XCode 5.1.1.
