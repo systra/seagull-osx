@@ -1,0 +1,21 @@
+#
+# Product specification file for Seagull
+#
+
+%product seagull-trans-sctp
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright  (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+
+# binary for traffic and scripts for stat
+f 555 root bin /usr/local/bin/libtrans_extsctp.so ../build-version/libtrans_extsctp.so
+

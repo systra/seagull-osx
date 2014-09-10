@@ -1,0 +1,35 @@
+#
+# Product specification file for Seagull
+#
+
+%product library-java-synchro
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%format tool-format
+
+
+d 555 root bin /opt/seagull
+d 555 root bin /opt/seagull/library-java-synchro
+
+# source code
+f 444 root bin /opt/seagull/library-java-synchro/E_SynchroLost.java ../library-java-synchro/E_SynchroLost.java nostrip()
+f 444 root bin /opt/seagull/library-java-synchro/C_SynchroSemaphore.java ../library-java-synchro/C_SynchroSemaphore.java nostrip()
+f 444 root bin /opt/seagull/library-java-synchro/C_SynchroCmd.java ../library-java-synchro/C_SynchroCmd.java nostrip()
+f 444 root bin /opt/seagull/library-java-synchro/C_SynchroThread.java ../library-java-synchro/C_SynchroThread.java nostrip()
+f 444 root bin /opt/seagull/library-java-synchro/Makefile ../library-java-synchro/Makefile nostrip()
+f 444 root bin /opt/seagull/library-java-synchro/README.txt ../library-java-synchro/README.txt nostrip()
+
+# example
+f 444 root bin /opt/seagull/library-java-synchro/synchro_usage.java ../library-java-synchro/synchro_usage.java nostrip()
+
+# launch script 
+f 555 root bin /opt/seagull/library-java-synchro/start.ksh ../library-java-synchro/start.ksh
+
+

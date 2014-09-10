@@ -1,0 +1,53 @@
+#
+# Product specification file for Seagull
+#
+
+%product sip-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/sip
+d 555 root bin /opt/seagull/sip/config
+d 555 root bin /opt/seagull/sip/scenario
+d 555 root bin /opt/seagull/sip/run
+d 777 root bin /opt/seagull/sip/logs
+
+# sip/xml parsing
+f 555 root bin /usr/local/bin/libparser_xml.so ../build-version/libparser_xml.so
+
+
+# run scripts
+f 555 root bin /opt/seagull/sip/run/start_client.ksh ../exe-env/sip-env/run/start_client_test.ksh
+f 555 root bin /opt/seagull/sip/run/start_client.param.ksh ../exe-env/sip-env/run/start_client_test.param.ksh
+f 555 root bin /opt/seagull/sip/run/start_server.ksh ../exe-env/sip-env/run/start_server_test.ksh
+f 555 root bin /opt/seagull/sip/run/start_client_corr.ksh ../exe-env/sip-env/run/start_client_corr.ksh
+f 555 root bin /opt/seagull/sip/run/start_server_corr_1.ksh ../exe-env/sip-env/run/start_server_corr_1.ksh
+f 555 root bin /opt/seagull/sip/run/start_server_corr_2.ksh ../exe-env/sip-env/run/start_server_corr_2.ksh
+f 555 root bin /opt/seagull/sip/run/external_data_client.csv ../exe-env/sip-env/run/external_data_client.csv
+
+# xml configuration files
+f 444 root bin /opt/seagull/sip/config/sip-dictionnary.xml ../exe-env/sip-env/config/sip-dictionnary.xml
+f 444 root bin /opt/seagull/sip/config/conf.client.xml ../exe-env/sip-env/config/conf.client.xml
+f 444 root bin /opt/seagull/sip/config/conf.client.param.xml ../exe-env/sip-env/config/conf.client.param.xml
+f 444 root bin /opt/seagull/sip/config/conf.server.xml ../exe-env/sip-env/config/conf.server.xml
+f 444 root bin /opt/seagull/sip/config/conf.client.corr.xml ../exe-env/sip-env/config/conf.client.corr.xml
+f 444 root bin /opt/seagull/sip/config/conf.server.corr.1.xml ../exe-env/sip-env/config/conf.server.corr.1.xml
+f 444 root bin /opt/seagull/sip/config/conf.server.corr.2.xml ../exe-env/sip-env/config/conf.server.corr.2.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/sip/scenario/client.xml ../exe-env/sip-env/scenario/client.xml
+f 444 root bin /opt/seagull/sip/scenario/client.param.xml ../exe-env/sip-env/scenario/client.param.xml
+f 444 root bin /opt/seagull/sip/scenario/server.xml ../exe-env/sip-env/scenario/server.xml
+f 444 root bin /opt/seagull/sip/scenario/client_corr.xml ../exe-env/sip-env/scenario/client_corr.xml
+f 444 root bin /opt/seagull/sip/scenario/server_corr_1.xml ../exe-env/sip-env/scenario/server_corr_1.xml
+f 444 root bin /opt/seagull/sip/scenario/server_corr_2.xml ../exe-env/sip-env/scenario/server_corr_2.xml
+

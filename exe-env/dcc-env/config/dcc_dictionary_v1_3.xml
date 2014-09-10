@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<protocol name="DCC Protocol - v1.3" 
+          type="binary" length="header-excluded">
+
+<types>
+<!-- Types defined for the TVL   -->
+  <typedef name="Char"            type="signed" size="1" unit="octet"> </typedef>
+  <typedef name="Short"           type="signed" size="2" unit="octet"> </typedef>
+  <typedef name="Integer"         type="signed" size="4" unit="octet"> </typedef>
+  <typedef name="TimeStamp"       type="signed" size="4" unit="octet"> </typedef>
+  <typedef name="String"          type="string"          unit="octet"> </typedef>
+  <typedef name="DialogStruct"    type="composed"        unit="octet"> </typedef>
+</types>
+
+<header name="DCCMessage" length="msgLength" type="Msg_type">
+  <fielddef name="msgTag"       size="2" unit="octet"></fielddef>
+  <fielddef name="msgLength"    size="2" unit="octet"></fielddef>
+</header>
+
+<body>
+  <header name="TLV" length="lengthContent" type="tag">
+     <fielddef name="tag"           size="2" unit="octet"> </fielddef>
+     <fielddef name="lengthContent" size="2" unit="octet"> </fielddef>
+  </header>
+</body>
+
+<dictionary>
+  <!-- TLV definitions -->
+  <!-- Note: should be coming from external dictionary.XML -->
+  <TLV>
+    <!-- DCC Protocol TLV  -->
+
+    <define name="Msg_type"   type="Char">
+      <setfield name="tag" value="0x0101"></setfield>
+    </define>
+
+    <define name="Server_hostname"  type="String">
+     <setfield name="tag" value="0x0502"></setfield>
+    </define>
+
+    <define name="Client_hostname"  type="String">
+     <setfield name="tag" value="0x0503"></setfield>
+    </define>
+
+    <define name="Protocol_version"  type="String">
+     <setfield name="tag" value="0x0504"></setfield>
+    </define>
+
+    <define name="Error_code"  type="Char">
+      <setfield name="tag" value="0x0105"></setfield>
+    </define>
+
+    <define name="Sequence_number"   type="Short">
+      <setfield name="tag" value="0x0206"></setfield>
+    </define>
+
+<!-- Special definition for Dialog_id filed
+    <define name="Dialog_id"  type="String">
+ -->
+
+    <define name="Dialog_id"  type="DialogStruct">
+     <setfield name="tag" value="0x0507"></setfield>
+    </define>
+
+    <define name="Start_time"  type="TimeStamp">
+      <setfield name="tag" value="0x0408"></setfield>
+    </define>
+
+    <define name="Time_zone_offset"  type="Integer">
+      <setfield name="tag" value="0x0309"></setfield>
+    </define>
+
+    <define name="Service_ID"  type="Integer">
+      <setfield name="tag" value="0x030A"></setfield>
+    </define>
+
+    <define name="Service_group"  type="Integer">
+      <setfield name="tag" value="0x030B"></setfield>
+    </define>
+
+    <define name="Service_class"  type="String">
+     <setfield name="tag" value="0x050C"></setfield>
+    </define>
+
+    <define name="Service_call_type"  type="Integer">
+      <setfield name="tag" value="0x030D"></setfield>
+    </define>
+
+    <define name="Service_revision"  type="String">
+     <setfield name="tag" value="0x050E"></setfield>
+    </define>
+
+    <define name="Subscriber_id1"  type="String">
+     <setfield name="tag" value="0x050F"></setfield>
+    </define>
+
+    <define name="Subscriber_id1_nature"  type="Char">
+      <setfield name="tag" value="0x0110"></setfield>
+    </define>
+
+    <define name="Subscriber_id2"  type="String">
+     <setfield name="tag" value="0x0511"></setfield>
+    </define>
+
+    <define name="Subscriber_id2_nature"  type="Char">
+      <setfield name="tag" value="0x0112"></setfield>
+    </define>
+
+    <define name="Service_type"  type="Integer">
+      <setfield name="tag" value="0x0313"></setfield>
+    </define>
+
+    <define name="Volume_requested"  type="Integer">
+      <setfield name="tag" value="0x0314"></setfield>
+    </define>
+
+    <define name="Volume_requested_unit"  type="Char">
+      <setfield name="tag" value="0x0115"></setfield>
+    </define>
+
+    <define name="Size_requested"  type="Integer">
+      <setfield name="tag" value="0x0316"></setfield>
+    </define>
+
+    <define name="Size_requested_unit"  type="Char">
+      <setfield name="tag" value="0x0117"></setfield>
+    </define>
+
+    <define name="Extension_field"  type="String">
+     <setfield name="tag" value="0x0518"></setfield>
+    </define>
+
+    <define name="Tariff_code"  type="String">
+     <setfield name="tag" value="0x0519"></setfield>
+    </define>
+
+    <define name="Volume_granted"  type="Integer">
+      <setfield name="tag" value="0x031A"></setfield>
+    </define>
+
+    <define name="Volume_granted_unit"  type="Char">
+      <setfield name="tag" value="0x011B"></setfield>
+    </define>
+
+    <define name="Size_granted"  type="Integer">
+      <setfield name="tag" value="0x031C"></setfield>
+    </define>
+
+    <define name="Size_granted_unit"  type="Char">
+      <setfield name="tag" value="0x011D"></setfield>
+    </define>
+
+    <define name="Balance_initial"  type="Integer">
+      <setfield name="tag" value="0x031E"></setfield>
+    </define>
+
+    <define name="Balance_remaining"   type="Integer">
+      <setfield name="tag" value="0x031F"></setfield>
+    </define>
+
+    <define name="Balance_precision"  type="Char">
+      <setfield name="tag" value="0x0120"></setfield>
+    </define>
+
+    <define name="Balance_type"  type="Short">
+      <setfield name="tag" value="0x0221"></setfield>
+    </define>
+
+    <define name="Expiry_days_rem"  type="Short">
+      <setfield name="tag" value="0x0222"></setfield>
+    </define>
+
+    <define name="Last_token"  type="Char">
+      <setfield name="tag" value="0x0123"></setfield>
+    </define>
+
+    <define name="Free_call"  type="Char">
+      <setfield name="tag" value="0x0124"></setfield>
+    </define>
+
+    <define name="Subscriber_language"  type="Char">
+      <setfield name="tag" value="0x0125"></setfield>
+    </define>
+
+    <define name="Message_info"  type="String">
+     <setfield name="tag" value="0x0526"></setfield>
+    </define>
+
+    <define name="Message_info_type"  type="Char">
+      <setfield name="tag" value="0x0127"></setfield>
+    </define>
+
+    <define name="New_destination_address"  type="String">
+     <setfield name="tag" value="0x0528"></setfield>
+    </define>
+
+    <define name="New_destination_nature"  type="Char">
+      <setfield name="tag" value="0x0129"></setfield>
+    </define>
+
+    <define name="Connect_time"  type="TimeStamp">
+      <setfield name="tag" value="0x042A"></setfield>
+    </define>
+
+    <define name="Elapsed_time"  type="TimeStamp">
+      <setfield name="tag" value="0x042B"></setfield>
+    </define>
+
+    <define name="Volume_not_consumed"  type="Integer">
+      <setfield name="tag" value="0x032C"></setfield>
+    </define>
+
+    <define name="Volume_not_consumed_unit"  type="Char">
+      <setfield name="tag" value="0x012D"></setfield>
+    </define>
+
+    <define name="Size_not_consumed"  type="Integer">
+      <setfield name="tag" value="0x032E"></setfield>
+    </define>
+
+    <define name="Size_not_consumed_unit"  type="Char">
+      <setfield name="tag" value="0x012F"></setfield>
+    </define>
+
+    <define name="End_reason"  type="Char">
+      <setfield name="tag" value="0x0130"></setfield>
+    </define>
+
+    <define name="Apn"  type="String">
+     <setfield name="tag" value="0x0531"></setfield>
+    </define>
+
+    <define name="Gateway_address"  type="String">
+     <setfield name="tag" value="0x0532"></setfield>
+    </define>
+
+    <define name="Gateway_address_nature"  type="Char">
+     <setfield name="tag" value="0x0133"></setfield>
+    </define>
+
+    <define name="Sgsn_address"  type="String">
+     <setfield name="tag" value="0x0534"></setfield>
+    </define>
+
+    <define name="Sgsn_address_nature"  type="Char">
+      <setfield name="tag" value="0x0135"></setfield>
+    </define>
+
+    <define name="Refund_indicator"  type="Char">
+      <setfield name="tag" value="0x0136"></setfield>
+    </define>
+
+    <define name="Volume_not_refunded"  type="Integer">
+      <setfield name="tag" value="0x0337"></setfield>
+    </define>
+
+    <define name="Volume_not_refunded_unit"  type="Char">
+      <setfield name="tag" value="0x0138"></setfield>
+    </define>
+
+
+  </TLV>
+
+  <!-- DCCMessage definitions -->
+  <DCCMessage session-id="Dialog_id" out-of-session-id="Server_hostname">
+    <define name="DCC_StartUp_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x01"></TLV>
+    </define> 
+    <define name="DCC_StartUp_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x02"></TLV>
+    </define> 
+    <define name="DCC_ShutDown_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x03"></TLV>
+    </define> 
+    <define name="DCC_ShutDown_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x04"></TLV>
+    </define> 
+    <define name="DCC_KeepAlive_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x05"></TLV>
+    </define> 
+    <define name="DCC_KeepAlive_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x06"></TLV>
+    </define> 
+    <define name="DCC_Authorize_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x07"></TLV>
+    </define> 
+    <define name="DCC_Authorize_conf">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x08"></TLV>
+    </define> 
+    <define name="DCC_Authorize_reject">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x09"></TLV>
+    </define> 
+    <define name="DCC_ReAuthorize_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x0A"></TLV>
+    </define> 
+    <define name="DCC_End_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x0B"></TLV>
+    </define> 
+    <define name="DCC_End_ack">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="Msg_type"     value="0x0C"></TLV>
+    </define> 
+  </DCCMessage>
+
+</dictionary>
+
+</protocol>
+

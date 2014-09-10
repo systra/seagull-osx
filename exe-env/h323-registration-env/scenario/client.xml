@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="H.225 RAS RRQ client scenario">
+
+<counter>
+  <counterdef name="session-counter" init="0"></counterdef>
+</counter>
+
+<init>
+  <send channel="channel-1">
+    <action>
+      <!-- Sequence Number for GRQ is set to 0 then value is 1 -->       
+      <set-value name="requestSeqNum" format="$(session-counter)"></set-value>
+    </action>
+    <message name="GateKeeperRequest">
+      <!-- Redefine msg-type for addition optional bits 
+           GRQ type (00 0000) + 0 Extension bit + 0 opt (nonStandardData) -->
+      <setfield name="msg-type" value="0x00"></setfield>
+      <parameter name="body" 
+        value="0x060008914a0002001010d8b0109e22c00900003d164571756976616c656e6365204f70656e50686f6e65000006312e322e3000000001048037a947c47b">
+      </parameter>
+    </message>
+  </send>
+  <receive channel="channel-1">
+    <message name="GateKeeperConfirm">
+    </message>
+  </receive>
+</init>
+
+<traffic>
+  <send channel="channel-1">
+    <action>
+      <inc-counter name="session-counter"></inc-counter>
+      <!-- Sequence Number for GRQ is set to 1 then value is 2 -->       
+      <set-value name="requestSeqNum" format="$(session-counter)"></set-value>
+    </action>
+    <message name="RegistrationRequest">
+      <!-- Redefine msg-type for addition optional bits 
+           RRQ type (00 0011) + 1 Extension bit + 0 opt (nonStandardData) -->
+      <setfield name="msg-type" value="0x0e"></setfield>
+      <parameter name="body" 
+       value="0x060008914a000201001010d8b006b801001010d8b0109e22c00900003d164571756976616c656e6365204f70656e50686f6e65000006312e322e3000000001048037a947c47b06005200560047004b600900003d164571756976616c656e6365204f70656e50686f6e65000006312e322e300000108b020013010001000100">
+      </parameter>
+    </message>
+    <action>
+       <start-timer></start-timer>
+    </action>
+  </send>
+  
+  <receive channel="channel-1">
+    <action>
+         <stop-timer></stop-timer>
+    </action>
+    <message name="RegistrationConfirm">
+    </message>
+  </receive>
+
+</traffic>
+
+</scenario>
+
+
+
+
+
+
+
+
+
+
+
+
+

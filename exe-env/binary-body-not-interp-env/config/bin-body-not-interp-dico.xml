@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- OMVIA/Intervoice protocol definition -->
+<!-- based on binary-body-not-interpreted -->
+
+<protocol name="bin-body-not-interp-v1" type="binary-body-not-interpreted">
+
+<types>
+  <typedef name="String" type="string" unit="octet"> </typedef>
+  <typedef name="Integer32" type="signed" size="4" unit="octet"> </typedef>
+</types>
+
+<header name="command" length="LengthOfData" type="CommandId">
+   <fielddef name="LengthOfData" size="4" unit="octet"></fielddef>
+   <fielddef name="Padding" size="2" unit="octet"></fielddef>
+   <start-length></start-length>
+   <fielddef name="CommandId" size="2" unit="octet"></fielddef>
+   <fielddef name="TypeIndicator" size="2" unit="octet"></fielddef>
+</header>
+
+<body>
+   <header name="parameter"></header>
+</body>
+
+<dictionary>
+
+  <!-- body define(s) not present here: partially decoded -->
+  <parameter>
+    <define name="SDPTransactionId-1" type="String" size="1" unit="octet" position="1">
+    </define>
+    <define name="SDPTransactionId-12" type="String" size="12" unit="octet" position="1">
+    </define>
+  </parameter>
+
+  <command session-id="SDPTransactionId-12" out-of-session-id="SDPTransactionId-1" 
+                                            out-of-session-id="CommandId">
+     <!-- -->
+     <define name="SessionConnectRequest">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1012"></setfield>
+        <setfield name="TypeIndicator" value="0"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+        <not-present name="SDPTransactionId-12"></not-present>
+     </define>
+     <define name="SessionConnectResponse">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1012"></setfield>
+        <setfield name="TypeIndicator" value="1"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+        <not-present name="SDPTransactionId-12"></not-present>
+     </define>
+     <define name="Watchdog">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1011"></setfield>
+        <setfield name="TypeIndicator" value="0"></setfield>
+        <not-present name="SDPTransactionId-12"></not-present>
+     </define>
+     <define name="WatchdogResponse">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1011"></setfield>
+        <setfield name="TypeIndicator" value="1"></setfield>
+        <not-present name="SDPTransactionId-12"></not-present>
+     </define>
+     <define name="NewCall">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1013"></setfield>
+        <setfield name="TypeIndicator" value="0"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+     <define name="NewCallResponse">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1013"></setfield>
+        <setfield name="TypeIndicator" value="1"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+     <define name="CallerReleased">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1010"></setfield>
+        <setfield name="TypeIndicator" value="0"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+     <define name="BalanceUpdate">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1010"></setfield>
+        <setfield name="TypeIndicator" value="1"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+     <define name="ErrorResponse">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1010"></setfield>
+        <setfield name="TypeIndicator" value="2"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+     <define name="Failure">
+        <setfield name="Padding" value="0"></setfield>
+        <setfield name="CommandId" value="0x1032"></setfield>
+        <setfield name="TypeIndicator" value="0"></setfield>
+        <not-present name="SDPTransactionId-1"></not-present>
+     </define>
+  </command>
+
+</dictionary>
+
+</protocol>
+
+

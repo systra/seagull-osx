@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<configuration name="Simple MBI Server Conf">
+
+  <define entity="transport"
+    name="trans-ip-v4"
+    file="libtrans_ip.so"
+    create_function="create_cipio_instance"
+    delete_function="delete_cipio_instance"
+<!--    protocol="MBI Protocol - v1.13" -->
+    init-args="type=tcp">
+  </define>
+
+  <define entity="channel"
+    name="trans-ip-v4"
+    protocol="MBI Protocol - v1.13"
+    transport="trans-ip-v4"
+    open-args="mode=server;source=127.0.0.1:3868"> 
+  </define>
+
+  <define entity="traffic-param" name="display-period" value="1"></define>
+  <define entity="traffic-param" name="log-stat-period" value="1"></define>
+  <define entity="traffic-param" name="log-stat-file" value="../logs/authorize_server-stat.csv"></define>
+  <define entity="traffic-param" name="call-timeout-ms" value="1000"></define>
+  <define entity="traffic-param" name="display-scenario-stat" value="true"></define>
+  <define entity="traffic-param" name="display-protocol-stat" value="true"></define>
+  <define entity="traffic-param" name="log-protocol-stat-period" value="5"></define>
+  <define entity="traffic-param" name="log-protocol-stat-name" value="all"></define>
+  <define entity="traffic-param" name="log-protocol-stat-file" value="../logs/server-protocol-stat.csv"></define>
+
+<!--
+  <define entity="traffic-param" name="data-log-period" value="10"></define>
+  <define entity="traffic-param" name="data-log-number" value="1000"></define>
+  <define entity="traffic-param" name="data-log-file" value="../logs/authorize_server-rtt.csv"></define>
+  <define entity="traffic-param" name="data-log-rtdistrib" value="3000"></define>
+-->
+
+  <define entity="traffic-param" name="max-send" value="2000"></define>
+  <define entity="traffic-param" name="max-receive" value="2000"></define>
+  <define entity="traffic-param" name="max-simultaneous-calls" value="2000"></define>
+  <define entity="traffic-param" name="select-timeout-ms" value="1000"></define>
+
+
+</configuration>

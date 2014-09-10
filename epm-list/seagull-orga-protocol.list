@@ -1,0 +1,36 @@
+#
+# Product specification file for Seagull
+#
+
+%product orga-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/orga
+d 555 root bin /opt/seagull/orga/config
+d 555 root bin /opt/seagull/orga/scenario
+d 555 root bin /opt/seagull/orga/run
+d 777 root bin /opt/seagull/orga/logs
+
+# run scripts
+f 555 root bin /opt/seagull/orga/run/start_client.ksh ../exe-env/orga-env/run/start_client.ksh
+f 555 root bin /opt/seagull/orga/run/start_server.ksh ../exe-env/orga-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/orga/config/orga-dictionary.xml ../exe-env/orga-env/config/orga-dictionary.xml
+f 444 root bin /opt/seagull/orga/config/conf.client.xml ../exe-env/orga-env/config/conf.client.xml
+f 444 root bin /opt/seagull/orga/config/conf.server.xml ../exe-env/orga-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/orga/scenario/client.xml ../exe-env/orga-env/scenario/client.xml
+f 444 root bin /opt/seagull/orga/scenario/server.xml ../exe-env/orga-env/scenario/server.xml
+

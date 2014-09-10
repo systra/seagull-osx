@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="Simple MBI Server scenario">
+
+<init>
+  <receive channel="trans-ip-v4">
+    <MBIMessage name="StartUp_req">
+      <TLV name="scp_name"     value="OCSAC"></TLV>
+      <TLV name="protocol_version" value="2.2"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="SCP_NAME" entity="scp_name"></store>
+    </action>
+  </receive>
+  
+  <send channel="trans-ip-v4">
+    <action>
+      <restore name="SCP_NAME" entity="scp_name"></restore>
+    </action>
+    <MBIMessage name="StartUp_response">
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="scp_name" value="na"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+    </MBIMessage>
+  </send>
+</init>
+
+<traffic>
+  <receive channel="trans-ip-v4">
+    <MBIMessage name="Authorize_req">
+      <TLV name="scp_name" value="na"> </TLV>
+      <TLV name="protocol_version" value="na"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="-1"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="SCP_NAME" entity="scp_name"></store>
+      <store name="CDR_NUMBER" entity="CDR_number"></store>
+      <store name="SEQ_NB" entity="sequence_nb"></store>
+    </action>
+  </receive>
+  
+  <send channel="trans-ip-v4">
+    <action>
+      <restore name="SCP_NAME" entity="scp_name"></restore>
+      <restore name="CDR_NUMBER" entity="CDR_number"></restore>
+      <restore name="SEQ_NB" entity="sequence_nb"></restore>
+      <start-timer></start-timer>
+    </action>
+    <MBIMessage name="Authorize_conf">
+      <TLV name="protocol_version" value="2.2"></TLV>
+      <TLV name="scp_name" value="DEF"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="-1"> </TLV>
+      <TLV name="token" value="120"> </TLV>
+      <TLV name="token_type" value="2"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+    </MBIMessage>
+  </send>
+
+  <receive channel="trans-ip-v4">
+    <MBIMessage name="End_req">
+      <TLV name="scp_name" value="na"> </TLV>
+      <TLV name="protocol_version" value="na"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="-1"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="SEQ_NB" entity="sequence_nb"></store>
+      <stop-timer></stop-timer>
+    </action>
+  </receive>
+  
+  <send channel="trans-ip-v4">
+    <action>
+      <restore name="SCP_NAME" entity="scp_name"></restore>
+      <restore name="CDR_NUMBER" entity="CDR_number"></restore>
+      <restore name="SEQ_NB" entity="sequence_nb"></restore>
+    </action>
+    <MBIMessage name="End_ack">
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="scp_name" value="DEF"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="-1"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+    </MBIMessage>
+  </send>
+
+
+</traffic>
+</scenario>
+
+
+

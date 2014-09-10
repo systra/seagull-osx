@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="Simple OMVIA Server scenario">
+
+<init>
+  <receive channel="channel-1">
+    <command name="SessionConnectRequest">
+    </command>
+    <action>
+        <store name="COMMAND-ID" entity="CommandId"></store>  
+    </action>
+  </receive>
+  <send channel="channel-1">
+    <action>
+        <restore name="COMMAND-ID"  entity="CommandId"></restore>
+    </action>
+    <command name="SessionConnectResponse">
+      <parameter name="body" value=",2,9,">
+      </parameter>
+    </command>
+  </send>
+</init>
+
+<traffic>
+  <receive channel="channel-1">
+    <command name="NewCall">
+    </command>
+    <action>
+      <start-timer></start-timer>
+      <store name="SESSION-ID" entity="SDPTransactionId-12"></store>
+    </action>
+  </receive>
+
+  <send channel="channel-1">
+    <action>
+      <stop-timer></stop-timer>
+      <restore name="SESSION-ID"  entity="SDPTransactionId-12"></restore> 
+    </action>
+    <command name="NewCallResponse">
+      <parameter name="body" value=",000000000001,0000000001,3900,0,1,1,0,,,,,">
+      </parameter>
+    </command>
+  </send>
+
+  <receive channel="channel-1">
+    <command name="CallerReleased">
+    </command>
+  </receive>
+
+  <send channel="channel-1">
+    <action>
+      <restore name="SESSION-ID"  entity="SDPTransactionId-12"></restore> 
+    </action>
+    <command name="BalanceUpdate">
+      <parameter name="body" value=",000000000001,0000000002,0,0000000000,0000000000,Call lasted 0:03 and cost 15.00 GBP. You have 6655.90 GBP remaining,">
+      </parameter>
+    </command>
+  </send>
+
+</traffic>
+
+
+<default>
+
+  <receive channel="channel-1">
+    <command name="Watchdog">
+    </command>
+    <action>
+      <store name="SESSION-ID-WATCH" entity="body" begin="1" end="2"></store>
+    </action>
+  </receive>
+  
+  <send channel="channel-1">
+    <action>
+       <restore name="SESSION-ID-WATCH" entity="SDPTransactionId-1"></restore> 
+    </action>
+    <command name="WatchdogResponse">
+      <parameter name="body" value=",0,0,">
+      </parameter>
+    </command>
+  </send>
+
+</default>
+
+</scenario>
+
+
+
+
+
+
+
+
+
+

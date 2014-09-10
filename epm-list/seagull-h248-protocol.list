@@ -1,0 +1,40 @@
+#
+# Product specification file for Seagull
+#
+
+%product h248-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/h248
+d 555 root bin /opt/seagull/h248/config
+d 555 root bin /opt/seagull/h248/scenario
+d 555 root bin /opt/seagull/h248/run
+d 777 root bin /opt/seagull/h248/logs
+
+# h248 parsing
+f 555 root bin /usr/local/bin/libparser_h248.so ../build-version/libparser_h248.so
+
+# run scripts
+f 555 root bin /opt/seagull/h248/run/start_client.ksh ../exe-env/h248-env/run/start_client.ksh
+f 555 root bin /opt/seagull/h248/run/start_server.ksh ../exe-env/h248-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/h248/config/h248-dictionary.xml ../exe-env/h248-env/config/h248-dictionary.xml
+f 444 root bin /opt/seagull/h248/config/conf.client.xml ../exe-env/h248-env/config/conf.client.xml
+f 444 root bin /opt/seagull/h248/config/conf.server.xml ../exe-env/h248-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/h248/scenario/client.xml ../exe-env/h248-env/scenario/client.xml
+f 444 root bin /opt/seagull/h248/scenario/client_multi_tid.xml ../exe-env/h248-env/scenario/client.xml
+f 444 root bin /opt/seagull/h248/scenario/server.xml ../exe-env/h248-env/scenario/server.xml
+

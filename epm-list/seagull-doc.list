@@ -1,0 +1,23 @@
+#
+# Product specification file for Seagull
+#
+
+%product seagull-doc
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright 2004/2005 by Hewlett-Packard Development Company, All Rigths Reserved
+%license ../COPYING
+%readme ../README
+%version tool-version
+%vendor HP
+%packager HP OpenCall Business Unit
+
+%system tool-system
+%format tool-format
+
+d 555 root bin /opt/seagull/doc
+
+# documentation files
+f 666 root bin /opt/seagull/doc/seagull-refdoc.pdf ../exe-env/seagull-doc/seagull-refdoc.pdf
+
+
+

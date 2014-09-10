@@ -1,0 +1,46 @@
+#
+# Product specification file for Seagull
+#
+
+%product binary-body-not-interp-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../COPYING
+%readme ../README
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/binary-body-not-interp
+d 555 root bin /opt/seagull/binary-body-not-interp/doc
+d 555 root bin /opt/seagull/binary-body-not-interp/config
+d 555 root bin /opt/seagull/binary-body-not-interp/scenario
+d 555 root bin /opt/seagull/binary-body-not-interp/run
+d 777 root bin /opt/seagull/binary-body-not-interp/logs
+
+# run scripts
+f 555 root bin /opt/seagull/binary-body-not-interp/run/start_client_1.ksh ../exe-env/binary-body-not-interp-env/run/start_client_1.ksh
+f 555 root bin /opt/seagull/binary-body-not-interp/run/start_server_1.ksh ../exe-env/binary-body-not-interp-env/run/start_server_1.ksh
+f 555 root bin /opt/seagull/binary-body-not-interp/run/start_client_2.ksh ../exe-env/binary-body-not-interp-env/run/start_client_2.ksh
+f 555 root bin /opt/seagull/binary-body-not-interp/run/start_server_2.ksh ../exe-env/binary-body-not-interp-env/run/start_server_2.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/binary-body-not-interp/config/bin-body-not-interp-dico.xml ../exe-env/binary-body-not-interp-env/config/bin-body-not-interp-dico.xml
+f 444 root bin /opt/seagull/binary-body-not-interp/config/conf.client.xml ../exe-env/binary-body-not-interp-env/config/conf.client.xml
+f 444 root bin /opt/seagull/binary-body-not-interp/config/conf.server.xml ../exe-env/binary-body-not-interp-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/binary-body-not-interp/scenario/client_1.xml ../exe-env/binary-body-not-interp-env/scenario/client_1.xml
+f 444 root bin /opt/seagull/binary-body-not-interp/scenario/server_1.xml ../exe-env/binary-body-not-interp-env/scenario/server_1.xml
+f 444 root bin /opt/seagull/binary-body-not-interp/scenario/client_2.xml ../exe-env/binary-body-not-interp-env/scenario/client_2.xml
+f 444 root bin /opt/seagull/binary-body-not-interp/scenario/server_2.xml ../exe-env/binary-body-not-interp-env/scenario/server_2.xml
+
+
+# documentation files
+f 444 root bin /opt/seagull/binary-body-not-interp/doc/README-binary-body-not-interp.txt ../exe-env/binary-body-not-interp-env/doc/README-binary-body-not-interp.txt
+
+

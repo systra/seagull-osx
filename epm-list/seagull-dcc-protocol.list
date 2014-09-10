@@ -1,0 +1,45 @@
+#
+# Product specification file for Seagull
+#
+
+%product dcc-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/dcc
+d 555 root bin /opt/seagull/dcc/config
+d 555 root bin /opt/seagull/dcc/scenario
+d 555 root bin /opt/seagull/dcc/run
+d 777 root bin /opt/seagull/dcc/logs
+
+# run scripts
+f 555 root bin /opt/seagull/dcc/run/start_client.ksh ../exe-env/dcc-env/run/start_client.ksh
+f 555 root bin /opt/seagull/dcc/run/start_server.ksh ../exe-env/dcc-env/run/start_server.ksh
+f 555 root bin /opt/seagull/dcc/run/start_client_external_data.ksh ../exe-env/dcc-env/run/start_client_external_data.ksh
+f 555 root bin /opt/seagull/dcc/run/start_server_external_data.ksh ../exe-env/dcc-env/run/start_server_external_data.ksh
+f 555 root bin /opt/seagull/dcc/run/external_data.csv ../exe-env/dcc-env/run/external_data.csv
+
+# xml configuration files
+f 444 root bin /opt/seagull/dcc/config/dcc_dictionary_v1_3.xml ../exe-env/dcc-env/config/dcc_dictionary_v1_3.xml
+f 444 root bin /opt/seagull/dcc/config/dcc_dictionary_v1_9.xml ../exe-env/dcc-env/config/dcc_dictionary_v1_9.xml
+f 444 root bin /opt/seagull/dcc/config/conf.client.xml ../exe-env/dcc-env/config/conf.client.xml
+f 444 root bin /opt/seagull/dcc/config/conf.server.xml ../exe-env/dcc-env/config/conf.server.xml
+f 444 root bin /opt/seagull/dcc/config/conf.client_external_data.xml ../exe-env/dcc-env/config/conf.client_external_data.xml
+f 444 root bin /opt/seagull/dcc/config/conf.server_external_data.xml ../exe-env/dcc-env/config/conf.server_external_data.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/dcc/scenario/authorize.client.xml ../exe-env/dcc-env/scenario/authorize.client.xml
+f 444 root bin /opt/seagull/dcc/scenario/authorize.server.xml ../exe-env/dcc-env/scenario/authorize.server.xml
+f 444 root bin /opt/seagull/dcc/scenario/re-authorize.client.xml ../exe-env/dcc-env/scenario/re-authorize.client.xml
+f 444 root bin /opt/seagull/dcc/scenario/re-authorize.server.xml ../exe-env/dcc-env/scenario/re-authorize.server.xml
+f 444 root bin /opt/seagull/dcc/scenario/authorize.client_external_data.xml ../exe-env/dcc-env/scenario/authorize.client_external_data.xml
+f 444 root bin /opt/seagull/dcc/scenario/authorize.server_external_data.xml ../exe-env/dcc-env/scenario/authorize.server_external_data.xml

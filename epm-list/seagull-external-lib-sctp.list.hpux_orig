@@ -1,0 +1,32 @@
+#
+# Product specification file for Seagull
+#
+
+%product seagull-external-lib-sctp
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%format tool-format
+
+
+f 755 root bin /usr/local/bin/libsctplib.so.1.0.5 ../ext-tool-version/lib/libsctplib.so.1.0.5
+l 777 root bin /usr/local/bin/libsctplib.so.1 libsctplib.so.1.0.5
+l 777 root bin /usr/local/bin/libsctplib.so libsctplib.so.1.0.5
+f 755 root bin /usr/local/bin/libsctplib.la ../ext-tool-version/lib/libsctplib.la
+f 644 root bin /usr/local/bin/libsctplib.a ../ext-tool-version/lib/libsctplib.a
+f 755 root bin /usr/local/bin/libsctpsocket-170.so.1.0.7 ../ext-tool-version/lib/libsctpsocket-170.so.1.0.7
+l 777 root bin /usr/local/bin/libsctpsocket-130.so.1 libsctpsocket-170.so.1.0.7
+l 777 root bin /usr/local/bin/libsctpsocket.so libsctpsocket-170.so.1.0.7
+f 755 root bin /usr/local/bin/libsctpsocket.la ../ext-tool-version/lib/libsctpsocket.la
+f 644 root bin /usr/local/bin/libsctpsocket.a ../ext-tool-version/lib/libsctpsocket.a
+f 755 root bin /usr/local/bin/libcpppsocketapi-170.so.1.0.7 ../ext-tool-version/lib/libcppsocketapi-170.so.1.0.7
+l 777 root bin /usr/local/bin/libcpppsocketapi-170.so.1 libcppsocketapi-170.so.1.0.7
+l 777 root bin /usr/local/bin/libcpppsocketapi.so libcppsocketapi-170.so.1.0.7
+f 755 root bin /usr/local/bin/libcpppsocketapi.la ../ext-tool-version/lib/libcppsocketapi.la
+f 644 root bin /usr/local/bin/libcpppsocketapi.a ../ext-tool-version/lib/libcppsocketapi.a

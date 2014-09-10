@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="Simple MBI Client scenario">
+
+<counter>
+  <counterdef name="session-counter" init="0"></counterdef>
+</counter>
+
+<init>
+  <send channel="channel-1">
+    <command name="SessionConnectRequest">
+      <parameter name="body" value=",SAC,2,9,">
+      </parameter>
+    </command>
+  </send>
+  <receive channel="channel-1">
+    <command name="SessionConnectResponse">
+    </command>
+  </receive>
+</init>
+
+<traffic>
+  <send channel="channel-1">
+    <action>
+       <inc-counter name="session-counter"></inc-counter>
+       <set-value name="SDPTransactionId-12"
+                  format="$(session-counter)"
+                  fill-pattern="0" fill-size="12"></set-value>
+    </action>
+    <command name="NewCall">
+      <parameter name="body" value=",000000000001,0000000001,2,1,1,1,44166174323,1,1,0722919262,1,1,0722919263,26-01-200617:29:52,+04,0000013879,">
+      </parameter>
+    </command>
+    <action>
+       <start-timer></start-timer>
+    </action>
+  </send>
+  
+  <receive channel="channel-1">
+    <action>
+         <stop-timer></stop-timer>
+    </action>
+    <command name="NewCallResponse">
+    </command>
+    <action>
+      <store name="SESSION-ID" entity="body" begin="1" end="13"></store>
+    </action>
+  </receive>
+
+  <wait-ms value="2000"></wait-ms>
+
+  <send channel="channel-1">
+    <action>
+       <restore name="SESSION-ID" entity="body" begin="1" end="13"></restore> 
+    </action>
+    <command name="CallerReleased">
+      <parameter name="body" value=",000000000001,0000000002,0722919263,0722919262,26-01-200617:29:52,+04,3,0,1,">
+      </parameter>
+    </command>
+  </send>
+  
+
+  <receive channel="channel-1">
+    <command name="BalanceUpdate">
+    </command>
+  </receive>
+
+</traffic>
+
+<default>
+
+  <receive channel="channel-1">
+    <command name="Watchdog">
+    </command>
+    <action>
+      <store name="SESSION-ID-WATCH" entity="body" begin="1" end="2"></store>
+    </action>
+  </receive>
+  
+  <send channel="channel-1">
+    <action>
+       <restore name="SESSION-ID-WATCH" entity="body" begin="1" end="2"></restore> 
+    </action>
+    <command name="WatchdogResponse">
+      <parameter name="body" value=",0,0,">
+      </parameter>
+    </command>
+  </send>
+
+</default>
+
+
+</scenario>
+
+
+
+
+
+
+
+
+
+
+
+
+

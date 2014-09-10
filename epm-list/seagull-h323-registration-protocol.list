@@ -1,0 +1,36 @@
+#
+# Product specification file for Seagull
+#
+
+%product h323-regist-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/h323-registration
+d 555 root bin /opt/seagull/h323-registration/config
+d 555 root bin /opt/seagull/h323-registration/scenario
+d 555 root bin /opt/seagull/h323-registration/run
+d 777 root bin /opt/seagull/h323-registration/logs
+
+# run scripts
+f 555 root bin /opt/seagull/h323-registration/run/start_client.ksh ../exe-env/h323-registration-env/run/start_client.ksh
+f 555 root bin /opt/seagull/h323-registration/run/start_server.ksh ../exe-env/h323-registration-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/h323-registration/config/h225-ras-dictionary.xml ../exe-env/h323-registration-env/config/h225-ras-dictionary.xml
+f 444 root bin /opt/seagull/h323-registration/config/conf.client.xml ../exe-env/h323-registration-env/config/conf.client.xml
+f 444 root bin /opt/seagull/h323-registration/config/conf.server.xml ../exe-env/h323-registration-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/h323-registration/scenario/client.xml ../exe-env/h323-registration-env/scenario/client.xml
+f 444 root bin /opt/seagull/h323-registration/scenario/server.xml ../exe-env/h323-registration-env/scenario/server.xml
+

@@ -1,0 +1,39 @@
+#
+# Product specification file for Seagull
+#
+
+%product radius-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/radius
+d 555 root bin /opt/seagull/radius/config
+d 555 root bin /opt/seagull/radius/scenario
+d 555 root bin /opt/seagull/radius/run
+d 777 root bin /opt/seagull/radius/logs
+
+# run scripts
+f 555 root bin /opt/seagull/radius/run/start_client.ksh ../exe-env/radius-env/run/start_client.ksh
+f 555 root bin /opt/seagull/radius/run/start_server.ksh ../exe-env/radius-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/radius/config/radius-accounting.xml ../exe-env/radius-env/config/radius-accounting.xml
+f 444 root bin /opt/seagull/radius/config/conf.client.xml ../exe-env/radius-env/config/conf.client.xml
+f 444 root bin /opt/seagull/radius/config/conf.server.xml ../exe-env/radius-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/radius/scenario/radius-accounting.client.xml ../exe-env/radius-env/scenario/radius-accounting.client.xml
+f 444 root bin /opt/seagull/radius/scenario/radius-accounting.server.xml ../exe-env/radius-env/scenario/radius-accounting.server.xml
+f 444 root bin /opt/seagull/radius/scenario/external_client_data.csv ../exe-env/radius-env/scenario/external_client_data.csv
+f 444 root bin /opt/seagull/radius/scenario/external_server_data.csv ../exe-env/radius-env/scenario/external_server_data.csv
+
+

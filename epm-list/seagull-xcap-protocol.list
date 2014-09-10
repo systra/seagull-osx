@@ -1,0 +1,39 @@
+#
+# Product specification file for Seagull
+#
+
+%product xcap-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/xcap
+d 555 root bin /opt/seagull/xcap/config
+d 555 root bin /opt/seagull/xcap/scenario
+d 555 root bin /opt/seagull/xcap/run
+d 777 root bin /opt/seagull/xcap/logs
+
+# xcap/xml parsing
+f 555 root bin /usr/local/bin/libparser_xml.so ../build-version/libparser_xml.so
+
+# run scripts
+f 555 root bin /opt/seagull/xcap/run/start_client.ksh ../exe-env/xcap-env/run/start_client.ksh
+f 555 root bin /opt/seagull/xcap/run/start_server.ksh ../exe-env/xcap-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/xcap/config/xcap-dictionnary.xml ../exe-env/xcap-env/config/xcap-dictionnary.xml
+f 444 root bin /opt/seagull/xcap/config/conf.client.xml ../exe-env/xcap-env/config/conf.client.xml
+f 444 root bin /opt/seagull/xcap/config/conf.server.xml ../exe-env/xcap-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/xcap/scenario/client.xml ../exe-env/xcap-env/scenario/client.xml
+f 444 root bin /opt/seagull/xcap/scenario/server.xml ../exe-env/xcap-env/scenario/server.xml
+

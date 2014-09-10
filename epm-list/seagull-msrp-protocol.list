@@ -1,0 +1,36 @@
+#
+# Product specification file for Seagull
+#
+
+%product msrp-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/msrp
+d 555 root bin /opt/seagull/msrp/config
+d 555 root bin /opt/seagull/msrp/scenario
+d 555 root bin /opt/seagull/msrp/run
+d 777 root bin /opt/seagull/msrp/logs
+
+# run scripts
+f 555 root bin /opt/seagull/msrp/run/start_client.ksh ../exe-env/msrp-env/run/start_client.ksh
+f 555 root bin /opt/seagull/msrp/run/start_server.ksh ../exe-env/msrp-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/msrp/config/msrp-dictionnary.xml ../exe-env/msrp-env/config/msrp-dictionnary.xml
+f 444 root bin /opt/seagull/msrp/config/conf.client.xml ../exe-env/msrp-env/config/conf.client.xml
+f 444 root bin /opt/seagull/msrp/config/conf.server.xml ../exe-env/msrp-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/msrp/scenario/client.xml ../exe-env/msrp-env/scenario/client.xml
+f 444 root bin /opt/seagull/msrp/scenario/server.xml ../exe-env/msrp-env/scenario/server.xml
+

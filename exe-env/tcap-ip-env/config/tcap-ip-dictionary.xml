@@ -1,0 +1,270 @@
+<!--
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+ (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+
+-->
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<protocol name="tcap-ip-v1" type="binary-tlv">
+
+<types>
+  <typedef name="String" type="string" unit="octet"> </typedef>
+</types>
+
+<header name="package" length="pkg-length" type="pkg-type">
+  <fielddef name="pkg-length" size="1" unit="octet" value="$(length1)"></fielddef>
+  <length   name="length1"></length>
+  <fielddef name="pkg-type" size="1" unit="octet"></fielddef>
+  <fielddef name="tcap-msg-length" size="1" unit="octet" value="$(length2)"></fielddef>
+  <length   name="length2"></length>
+  <fielddef name="trans-id-ident" size="1" unit="octet"></fielddef>
+  <fielddef name="trans-id-length" size="1" unit="octet"></fielddef>
+  <fielddef name="orig-trans-id" size="4" unit="octet"></fielddef>
+  <fielddef name="field-sequence-ident" size="1" unit="octet"></fielddef>
+  <fielddef name="field-sequence-length" size="1" unit="octet" value="$(length3)"></fielddef>
+  <length   name="length3"></length>
+</header>
+
+<body>
+  <header name="component" length="component-length" type="component-type">
+     <fielddef name="component-type" size="1" unit="octet"></fielddef>
+     <fielddef name="component-length" size="1" unit="octet" value="$(length4)"></fielddef>
+     <length   name="length4"></length>
+     <fielddef name="component-id-ident" size="1" unit="octet"></fielddef>
+     <fielddef name="component-id-length" size="1" unit="octet"></fielddef>
+     <fielddef name="component-id" size="1" unit="octet"></fielddef>
+     <!-- begin optional  -->
+     <fielddef name="operation-code-ident" size="1" unit="octet"></fielddef>
+     <fielddef name="operation-code-length" size="1" unit="octet"></fielddef>
+     <fielddef name="operation-family" size="1" unit="octet"></fielddef>
+     <fielddef name="operation-specifier" size="1" unit="octet"></fielddef>
+     <fielddef name="error-code-ident" size="1" unit="octet"></fielddef>
+     <fielddef name="error-code-length" size="1" unit="octet"></fielddef>
+     <fielddef name="error-code" size="1" unit="octet"></fielddef>
+     <fielddef name="problem-code-ident" size="1" unit="octet"></fielddef>
+     <fielddef name="problem-code-length" size="1" unit="octet"></fielddef>
+     <fielddef name="problem-code" size="2" unit="octet"></fielddef>
+     <!-- end  optional  -->
+     <fielddef name="parameter-set-ident" size="1" unit="octet"></fielddef>
+  </header>
+</body>
+
+<dictionary>
+  <component>
+    <define name="Invoke" type="String">
+      <setfield name="component-type"        value="0xe9"></setfield>
+      <setfield name="component-id-ident"    value="0xcf"></setfield>
+      <setfield name="component-id-length"   value="0x01"></setfield>
+      <setfield name="component-id"          value="0x01"></setfield>
+      <setfield name="operation-code-ident"  value="0xd1"></setfield>
+      <setfield name="operation-code-length" value="0x02"></setfield>
+      <setfield name="operation-family"      value="0x09"></setfield>
+      <setfield name="operation-specifier"   value="0x5e"></setfield>
+      <setfield name="parameter-set-ident"   value="0xf2"></setfield>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+    <define name="Return-Result" type="String">
+      <setfield name="component-type"       value="0xea"></setfield>
+      <setfield name="component-id-ident"   value="0xcf"></setfield>
+      <setfield name="component-id-length"  value="0x01"></setfield>
+      <setfield name="component-id"         value="0x01"></setfield>
+      <setfield name="parameter-set-ident"  value="0xf2"></setfield>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code-length"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+    <define name="Return-Error" type="String">
+      <setfield name="component-type"       value="0xeb"></setfield>
+      <setfield name="component-id-ident"   value="0xcf"></setfield>
+      <setfield name="component-id-length"  value="0x01"></setfield>
+      <setfield name="component-id"         value="0x01"></setfield>
+      <setfield name="parameter-set-ident"  value="0xf2"></setfield>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code-length"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+    <define name="Reject" type="String">
+      <setfield name="component-type"       value="0xec"></setfield>
+      <setfield name="component-id-ident"   value="0xcf"></setfield>
+      <setfield name="component-id-length"  value="0x01"></setfield>
+      <setfield name="component-id"         value="0x01"></setfield>
+      <setfield name="parameter-set-ident"  value="0xf2"></setfield>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+    <define name="P-AbortCauseUnrecognized" type="String">
+      <setfield name="component-type"       value="0x01"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+    <define name="P-AbortCauseIncorrect" type="String">
+      <setfield name="component-type"       value="0x02"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+    <define name="P-AbortCauseBadly" type="String">
+      <setfield name="component-type"       value="0x03"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+    <define name="P-AbortCauseUnassigned" type="String">
+      <setfield name="component-type"       value="0x04"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+
+    <define name="P-AbortCausePermission" type="String">
+      <setfield name="component-type"       value="0x05"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+
+    <define name="P-AbortCauseRessource" type="String">
+      <setfield name="component-type"       value="0x06"></setfield>
+      <not-present name="component-length"></not-present>
+      <not-present name="component-id-ident"></not-present>
+      <not-present name="component-id-length"></not-present>
+      <not-present name="component-id"></not-present>
+      <not-present name="operation-code-ident"></not-present>
+      <not-present name="operation-code"></not-present>
+      <not-present name="operation-family"></not-present>
+      <not-present name="operation-specifier"></not-present>
+      <not-present name="parameter-set-ident"></not-present>
+      <not-present name="error-code-ident"></not-present>
+      <not-present name="error-code-length"></not-present>
+      <not-present name="error-code"></not-present>
+      <not-present name="problem-code-ident"></not-present>
+      <not-present name="problem-code-length"></not-present>
+      <not-present name="problem-code"></not-present>
+    </define>
+  </component>
+
+  <package session-id="orig-trans-id" out-of-session-id="orig-trans-id">
+     <define name="QueryWithPermission">
+       <setfield name="pkg-type"             value="0xe2"></setfield>
+       <setfield name="trans-id-ident"       value="0xc7"></setfield>
+       <setfield name="trans-id-length"      value="0x04"></setfield>
+       <setfield name="field-sequence-ident" value="0xe8"></setfield>
+
+     </define>
+     <define name="Response">
+       <setfield name="pkg-type"             value="0xe4"></setfield>
+       <setfield name="trans-id-ident"       value="0xc7"></setfield>
+       <setfield name="trans-id-length"      value="0x04"></setfield>
+       <setfield name="field-sequence-ident" value="0xe8"></setfield>
+     </define>
+     <define name="Abort">
+       <setfield name="pkg-type"             value="0xe6"></setfield>
+       <setfield name="trans-id-ident"       value="0xc7"></setfield>
+       <setfield name="trans-id-length"      value="0x04"></setfield>
+       <setfield name="field-sequence-ident" value="0xd7"></setfield>
+     </define>
+  </package>
+
+</dictionary>
+
+</protocol>
+
+

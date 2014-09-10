@@ -1,0 +1,36 @@
+#
+# Product specification file for Seagull
+#
+
+%product tcap-ip-protocol
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Software
+
+%system tool-system
+%requires seagull-core
+%format tool-format
+
+d 555 root bin /opt/seagull/tcap-ip
+d 555 root bin /opt/seagull/tcap-ip/config
+d 555 root bin /opt/seagull/tcap-ip/scenario
+d 555 root bin /opt/seagull/tcap-ip/run
+d 777 root bin /opt/seagull/tcap-ip/logs
+
+# run scripts
+f 555 root bin /opt/seagull/tcap-ip/run/start_client.ksh ../exe-env/tcap-ip-env/run/start_client.ksh
+f 555 root bin /opt/seagull/tcap-ip/run/start_server.ksh ../exe-env/tcap-ip-env/run/start_server.ksh
+
+# xml configuration files
+f 444 root bin /opt/seagull/tcap-ip/config/tcap-ip-dictionary.xml ../exe-env/tcap-ip-env/config/tcap-ip-dictionary.xml
+f 444 root bin /opt/seagull/tcap-ip/config/conf.client.xml ../exe-env/tcap-ip-env/config/conf.client.xml
+f 444 root bin /opt/seagull/tcap-ip/config/conf.server.xml ../exe-env/tcap-ip-env/config/conf.server.xml
+
+# xml scenarii files
+f 444 root bin /opt/seagull/tcap-ip/scenario/client.xml ../exe-env/tcap-ip-env/scenario/client.xml
+f 444 root bin /opt/seagull/tcap-ip/scenario/server.xml ../exe-env/tcap-ip-env/scenario/server.xml
+

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="Simple MBI Client scenario">
+
+<counter>
+  <counterdef name="session-counter" init="0"></counterdef>
+  <counterdef name="subscriber-counter" init="0"></counterdef>
+</counter>
+
+<init>
+  <send channel="trans-ip-v4">
+    <MBIMessage name="StartUp_req">
+      <TLV name="scp_name" value="OCSAC"> </TLV>
+      <TLV name="protocol_version" value="2.2"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="SCP_NAME" entity="scp_name"></store>
+      <store name="PROT_VER" entity="protocol_version"></store>
+    </action>
+  </send>
+  
+  <receive channel="trans-ip-v4">
+    <MBIMessage name="StartUp_response">
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="scp_name" value="OCSAC"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+    </MBIMessage>
+  </receive>
+</init>
+
+<traffic>
+  <send channel="trans-ip-v4">
+    <action>
+       <inc-counter name="session-counter"></inc-counter>
+       <inc-counter name="subscriber-counter"></inc-counter>
+       <set-value name="CDR_number"
+                  format="000$(session-counter)"></set-value>
+       <set-value name="subscriber_id"
+                  format="10091122334455$(subscriber-counter)"></set-value>
+
+       <set-value name="calling_number"
+                  format="10091122334455  tata $(subscriber-counter)  titit"></set-value>
+
+	<set-value name="call_attempt_time"
+		format="" method="sys_time" message_part="all"></set-value>
+
+    </action>
+    <MBIMessage name="Authorize_req">
+      <TLV name="scp_name" value="OCSAC"> </TLV>
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="1"> </TLV>
+      <TLV name="service_type" value="1"> </TLV>
+      <TLV name="subscriber_id" value="na"> </TLV>
+      <TLV name="subscriber_nature" value="2"> </TLV>
+      <TLV name="calling_number" value="0472826066"> </TLV>
+      <TLV name="calling_number_nature" value="1"> </TLV>
+      <TLV name="calling_party_category" value="48"> </TLV>
+      <TLV name="called_number" value="0472826057"> </TLV>
+      <TLV name="called_number_nature" value="1"> </TLV>
+      <TLV name="original_dialed_number" value="0472826057"> </TLV>
+      <TLV name="call_attempt_time" value="1111637919"> </TLV>
+      <TLV name="time_zone_offset_network" value="2"> </TLV>
+      <TLV name="time_zone_offset_local" value="2"> </TLV>
+      <TLV name="token_type" value="2"> </TLV>
+      <TLV name="duplicate_flag" value="0"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="SCP_NAME" entity="scp_name"></store>
+      <store name="PROT_VER" entity="protocol_version"></store>
+      <store name="CDR_NUMBER" entity="CDR_number"></store>
+      <start-timer></start-timer>
+    </action>
+  </send>
+  
+  <receive channel="trans-ip-v4">
+    <action>
+         <stop-timer></stop-timer>
+    </action>
+    <MBIMessage name="Authorize_conf">
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="scp_name" value="OCSAC"> </TLV>
+      <TLV name="CDR_number" value="0001"> </TLV>
+      <TLV name="sequence_nb" value="1"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+      <TLV name="token" value="20"> </TLV>
+      <TLV name="token_type" value="2"> </TLV>
+    </MBIMessage>
+    <action>
+      <store name="TOKEN_VALUE" entity="token"></store>
+    </action>
+  </receive>
+
+  <send channel="trans-ip-v4">
+    <action>
+      <restore name="SCP_NAME" entity="scp_name"></restore>
+      <restore name="PROT_VER" entity="protocol_version"></restore>
+      <restore name="CDR_NUMBER" entity="CDR_number"></restore>
+      <restore name="TOKEN_VALUE" entity="token"></restore>
+    </action>
+    <MBIMessage name="End_req">
+      <TLV name="scp_name" value="na"> </TLV>
+      <TLV name="protocol_version" value="na"> </TLV>
+      <TLV name="CDR_number" value="na"> </TLV>
+      <TLV name="sequence_nb" value="2"> </TLV>
+      <TLV name="service_type" value="1"> </TLV>
+      <TLV name="subscriber_id" value="1009112233445599"> </TLV>
+      <TLV name="subscriber_nature" value="2"> </TLV>
+      <TLV name="calling_number" value="0472826066"> </TLV>
+      <TLV name="calling_number_nature" value="1"> </TLV>
+      <TLV name="calling_party_category" value="48"> </TLV>
+      <TLV name="called_number" value="0472826057"> </TLV>
+      <TLV name="called_number_nature" value="1"> </TLV>
+      <TLV name="original_dialed_number" value="0472826057"> </TLV>
+      <TLV name="token_type" value="2"> </TLV>
+      <TLV name="token" value="-1"> </TLV>
+      <TLV name="call_connected_time" value="1111637920"> </TLV>
+      <TLV name="time_zone_offset_network" value="2"> </TLV>
+      <TLV name="time_zone_offset_local" value="2"> </TLV>
+      <TLV name="duplicate_flag" value="0"> </TLV>
+    </MBIMessage>
+  </send>
+  
+  <receive channel="trans-ip-v4">
+    <MBIMessage name="End_ack">
+      <TLV name="protocol_version" value="2.2"> </TLV>
+      <TLV name="scp_name" value="SCP1"> </TLV>
+      <TLV name="CDR_number" value="0001"> </TLV>
+      <TLV name="sequence_nb" value="2"> </TLV>
+      <TLV name="error_code" value="0"> </TLV>
+    </MBIMessage>
+  </receive>
+
+</traffic>
+</scenario>

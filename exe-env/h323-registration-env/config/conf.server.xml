@@ -1,0 +1,47 @@
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<configuration name="Simple IP Server Conf">
+  <define entity="transport"
+    name="trans-1"
+    file="libtrans_ip.so"
+    create_function="create_cipio_instance"
+    delete_function="delete_cipio_instance"
+    init-args="type=udp">
+  </define>
+
+  <define entity="channel"
+    name="channel-1"
+    protocol="h225-registration-v1"
+    transport="trans-1"
+    open-args="mode=server;source=127.0.0.1:1719">
+  </define>
+
+  <define entity="traffic-param" name="display-period" value="1"></define>
+  <define entity="traffic-param" name="log-stat-period" value="1"></define>
+  <define entity="traffic-param" name="log-stat-file" value="../logs/server-stat.csv"></define>
+  <define entity="traffic-param" name="call-timeout-ms" value="10000"></define>
+  <define entity="traffic-param" name="display-scenario-stat" value="true"></define>
+  <define entity="traffic-param" name="display-protocol-stat" value="true"></define>
+  <define entity="traffic-param" name="log-protocol-stat-period" value="5"></define>
+  <define entity="traffic-param" name="log-protocol-stat-name" value="all"></define>
+  <define entity="traffic-param" name="log-protocol-stat-file" value="../logs/server-protocol-stat.csv"></define>
+
+<!--
+  <define entity="traffic-param" name="data-log-period" value="10"></define>
+  <define entity="traffic-param" name="data-log-number" value="1000"></define>
+  <define entity="traffic-param" name="data-log-file" value="../logs/server-rtt.csv"></define>
+  <define entity="traffic-param" name="data-log-rtdistrib" value="3000"></define>
+-->
+
+  <define entity="traffic-param" name="max-send" value="2000"></define>
+  <define entity="traffic-param" name="max-receive" value="2000"></define>
+  <define entity="traffic-param" name="max-simultaneous-calls" value="3000"></define>
+  <define entity="traffic-param" name="select-timeout-ms" value="50"></define>
+
+<!--
+ <define entity="traffic-param" name="files-no-timestamp" value="true"></define>
+-->
+
+
+</configuration>

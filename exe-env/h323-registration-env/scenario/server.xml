@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario name ="H.225 RAS RRQ client scenario">
+
+<init>
+  <receive channel="channel-1">
+    <message name="GateKeeperRequest">
+    </message>
+    <action>
+        <store name="SEQ-NUMBER" entity="requestSeqNum"></store>  
+    </action>
+  </receive>
+
+  <send channel="channel-1">
+    <action>
+       <!-- Restore Seq Num -->
+       <restore name="SEQ-NUMBER"  entity="requestSeqNum"></restore>
+    </action>
+    <message name="GateKeeperConfirm">
+       <!-- Redefine msg-type for addition optional bits 
+            GCF type (00 0001) + 0 Extension bit + 0 opt (nonStandardData) -->
+      <setfield name="msg-type" value="0x04"></setfield>
+      <parameter name="body" 
+        value="0x060008914a000206005200560047004b000f80acb706b7">
+      </parameter>
+    </message>
+  </send>
+</init>
+
+<traffic>
+  <receive channel="channel-1">
+    <message name="RegistrationRequest">
+    </message>
+    <action>
+      <store name="SEQ-NUMBER" entity="requestSeqNum"></store> 
+    </action>
+  </receive>
+ 
+  <send channel="channel-1">
+    <action>
+       <!-- Restore Seq Num -->
+       <restore name="SEQ-NUMBER"  entity="requestSeqNum"></restore>
+    </action>
+    <message name="RegistrationConfirm">
+      <setfield name="msg-type" value="0x12"></setfield>
+      <parameter name="body" 
+      value="0x060008914a000201000f80acb706b801048037a947c47b06005200560047004b4e00300030003000300030003800310036003400350039003100300038003200360030003000390031003000360033003100370032003000320036003900350033003900350030003400340032003500340c8c02001301000100">
+      </parameter>
+    </message>
+  </send>
+
+</traffic>
+
+
+</scenario>
+
+
+
+
+
+
+
+
+
+

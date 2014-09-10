@@ -1,0 +1,39 @@
+#
+# Product specification file for Seagull
+#
+
+%product seagull-core
+%description Signaling Encoder And Generator Universal Load Launcher (Generic Traffic Generator)
+%copyright (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+%license ../LICENSE.txt
+%readme ../README.txt
+%version tool-version
+%vendor HP
+%packager HP OpenCall Business Unit
+
+%system tool-system
+%format tool-format
+
+d 555 root bin /opt/seagull
+d 555 root bin /opt/seagull/doc
+d 555 root bin /opt/seagull/config
+d 555 root bin /opt/seagull/scenario
+d 555 root bin /opt/seagull/run
+d 777 root bin /opt/seagull/logs
+
+# binary for traffic and scripts for stat
+f 555 root bin /usr/local/bin/seagull ../build-version/seagull
+f 555 root bin /usr/local/bin/csvsplit ../build-version/csvsplit
+f 555 root bin /usr/local/bin/csvextract ../build-version/csvextract
+f 555 root bin /usr/local/bin/libtrans_ip.so ../build-version/libtrans_ip.so
+f 555 root bin /usr/local/bin/lib_generalmethods.so ../build-version/lib_generalmethods.so
+f 555 root bin /usr/local/bin/computestat.ksh ../stats-scripts/computestat.ksh
+f 555 root bin /usr/local/bin/plotstat.ksh ../stats-scripts/plotstat.ksh
+f 555 root bin /usr/local/bin/startoctave_plot.ksh ../stats-scripts/startoctave_plot.ksh
+f 555 root bin /usr/local/bin/startoctave_stat.ksh ../stats-scripts/startoctave_stat.ksh
+f 555 root bin /opt/seagull/config/remote-ctrl.xml ../generator-control/remote-ctrl.xml
+
+
+
+
+

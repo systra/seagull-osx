@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<protocol name="MBI Protocol - v1.15" 
+          type="binary" length="header-excluded">
+
+<types>
+<!-- Types defined for the TVL   -->
+  <typedef name="Char"      type="signed" size="1" unit="octet"> </typedef>
+  <typedef name="Short"     type="signed" size="2" unit="octet"> </typedef>
+  <typedef name="Integer"   type="signed" size="4" unit="octet"> </typedef>
+  <typedef name="TimeStamp" type="number" size="4" unit="octet"> </typedef>
+  <typedef name="String"    type="string"          unit="octet"> </typedef>
+  <typedef name="Unsigned32" type="number" size="4" unit="octet"> </typedef>
+</types>
+
+<external-method>
+  <defmethod name="time"
+             param="lib=lib_generalmethods.so;function=sys_time_ms">
+  </defmethod>
+</external-method>
+
+<header name="MBIMessage" length="msgLength" type="msg_type">
+  <fielddef name="msgTag"       size="2" unit="octet"></fielddef>
+  <fielddef name="msgLength"    size="2" unit="octet"></fielddef>
+</header>
+
+<body>
+  <header name="TLV" length="lengthContent" type="tag">
+     <fielddef name="tag"    size="2" unit="octet"> </fielddef>
+     <fielddef name="lengthContent" size="2" unit="octet"> </fielddef>
+  </header>
+</body>
+
+<dictionary>
+  <!-- TLV definitions -->
+  <!-- Note: should be coming from external dictionary.XML -->
+  <TLV>
+    <!-- MBI Protocol TLV  -->
+
+    <define name="announcement_mask" type="Unsigned32">
+      <setfield name="tag" value="0x0301"></setfield>
+    </define>
+
+    <define name="balance" type="Integer">
+      <setfield name="tag" value="0x0302"></setfield>
+    </define>
+
+    <define name="balance_precision" type="Char">
+      <setfield name="tag" value="0x0103"></setfield>
+    </define>
+
+    <define name="balance_type" type="Short">
+      <setfield name="tag" value="0x0204"></setfield>
+    </define>
+
+    <define name="call_attempt_time" type="TimeStamp">
+      <setfield name="tag" value="0x0405"></setfield>
+    </define>
+
+    <define name="call_connected_time" type="TimeStamp">
+      <setfield name="tag" value="0x0406"></setfield>
+    </define>
+
+    <define name="called_number" type="String">
+      <setfield name="tag"  value="0x0507"></setfield>
+    </define>
+
+    <define name="called_number_nature" type="Char">
+      <setfield name="tag" value="0x0125"></setfield>
+    </define>
+
+    <define name="called_number_NAI" type="Char">
+      <setfield name="tag" value="0x0133"></setfield>
+    </define>
+
+    <define name="called_number_NPI" type="Char">
+      <setfield name="tag" value="0x0134"></setfield>
+    </define>
+
+    <define name="calling_number" type="String">
+      <setfield name="tag"  value="0x0508"></setfield>
+    </define>
+
+    <define name="calling_number_nature" type="Char">
+      <setfield name="tag" value="0x0126"></setfield>
+    </define>
+
+    <define name="calling_number_NAI" type="Char">
+      <setfield name="tag" value="0x0135"></setfield>
+    </define>
+
+    <define name="calling_number_NPI" type="Char">
+      <setfield name="tag" value="0x0136"></setfield>
+    </define>
+
+    <define name="calling_party_category" type="Char">
+      <setfield name="tag" value="0x0109"></setfield>
+    </define>
+
+    <define name="original_dialed_number" type="String">
+      <setfield name="tag"  value="0x0529"></setfield>
+    </define>
+
+    <define name="carrier_id" type="Integer">
+      <setfield name="tag" value="0x030A"></setfield>
+    </define>
+
+    <define name="location_info" type="String">
+      <setfield name="tag"  value="0x050B"></setfield>
+    </define>
+
+    <define name="location_info_format" type="Char">
+      <setfield name="tag" value="0x010C"></setfield>
+    </define>
+
+    <define name="location_info_MCC" type="String">
+      <setfield name="tag"  value="0x052D"></setfield>
+    </define>
+
+    <define name="location_info_MNC" type="String">
+      <setfield name="tag"  value="0x052E"></setfield>
+    </define>
+
+    <define name="location_info_LAC" type="Short">
+      <setfield name="tag" value="0x0227"></setfield>
+    </define>
+
+    <define name="location_info_CI" type="Short">
+      <setfield name="tag" value="0x0228"></setfield>
+    </define>
+
+    <define name="CDR_number" type="String">
+      <setfield name="tag"  value="0x050D"></setfield>
+    </define>
+
+    <define name="duplicate_flag" type="Char">
+      <setfield name="tag" value="0x010E"></setfield>
+    </define>
+
+    <define name="elapsed_time" type="TimeStamp">
+      <setfield name="tag"  value="0x040F"></setfield>
+    </define>
+
+    <define name="end_reason" type="Char">
+      <setfield name="tag" value="0x0110"></setfield>
+    </define>
+
+    <define name="error_code" type="Char">
+      <setfield name="tag" value="0x0111"></setfield>
+    </define>
+
+    <define name="expiry_day_rem" type="Short">
+      <setfield name="tag" value="0x0212"></setfield>
+    </define>
+
+    <define name="free_call" type="Char">
+      <setfield name="tag" value="0x0113"></setfield>
+    </define>
+
+    <define name="last_token" type="Char">
+      <setfield name="tag" value="0x0114"></setfield>
+    </define>
+
+    <define name="MSC_address" type="String">
+      <setfield name="tag"  value="0x0515"></setfield>
+    </define>
+
+    <define name="msg_type" type="Char">
+      <setfield name="tag" value="0x0116"></setfield>
+    </define>
+
+    <define name="number_trace" type="Char">
+      <setfield name="tag" value="0x0117"></setfield>
+    </define>
+
+    <define name="protocol_version" type="String">
+      <setfield name="tag"  value="0x0518"></setfield>
+    </define>
+
+    <define name="redirecting_party" type="String">
+      <setfield name="tag"  value="0x0519"></setfield>
+    </define>
+
+    <define name="redirecting_party_nature" type="Char">
+      <setfield name="tag" value="0x011A"></setfield>
+    </define>
+
+    <define name="redirecting_party_NAI" type="Char">
+      <setfield name="tag" value="0x0137"></setfield>
+    </define>
+
+    <define name="redirecting_party_NPI" type="Char">
+      <setfield name="tag" value="0x0138"></setfield>
+    </define>
+
+    <define name="routing_info" type="String">
+      <setfield name="tag"  value="0x052B"></setfield>
+    </define>
+
+    <define name="routing_info_nature" type="Integer">
+      <setfield name="tag" value="0x032C"></setfield>
+    </define>
+
+    <define name="routing_info_NAI" type="Char">
+      <setfield name="tag" value="0x012F"></setfield>
+    </define>
+
+    <define name="routing_info_NPI" type="Char">
+      <setfield name="tag" value="0x0130"></setfield>
+    </define>
+
+    <define name="scp_name" type="String">
+      <setfield name="tag"  value="0x051B"></setfield>
+    </define>
+
+    <define name="sequence_nb" type="Integer">
+      <setfield name="tag" value="0x031C"></setfield>
+    </define>
+
+    <define name="service_type" type="Char">
+      <setfield name="tag" value="0x011D"></setfield>
+    </define>
+
+    <define name="subscriber_id" type="String">
+      <setfield name="tag"  value="0x051E"></setfield>
+    </define>
+
+    <define name="subscriber_language"  type="Char">
+      <setfield name="tag" value="0x011F"></setfield>
+    </define>
+
+    <define name="subscriber_nature" type="Char">
+      <setfield name="tag" value="0x0120"></setfield>
+    </define>
+
+    <define name="subscriber_NAI" type="Char">
+      <setfield name="tag" value="0x0139"></setfield>
+    </define>
+
+    <define name="subscriber_NPI" type="Char">
+      <setfield name="tag" value="0x013A"></setfield>
+    </define>
+
+    <define name="vlr_number" type="String">
+      <setfield name="tag"  value="0x0521"></setfield>
+    </define>
+
+    <define name="vlr_number_NAI" type="Char">
+      <setfield name="tag" value="0x013B"></setfield>
+    </define>
+
+    <define name="vlr_number_NPI" type="Char">
+      <setfield name="tag" value="0x013C"></setfield>
+    </define>
+
+    <define name="time_zone_offset_network" type="Char">
+      <setfield name="tag" value="0x0122"></setfield>
+    </define>
+
+    <define name="time_zone_offset_local" type="Char">
+      <setfield name="tag" value="0x0144"></setfield>
+    </define>
+
+    <define name="token_type" type="Char">
+      <setfield name="tag" value="0x0123"></setfield>
+    </define>
+
+    <define name="token" type="Integer">
+      <setfield name="tag" value="0x0324"></setfield>
+    </define>
+
+    <define name="server_data" type="String">
+      <setfield name="tag"  value="0x052A"></setfield>
+    </define>
+
+    <define name="subscriber_message" type="String">
+      <setfield name="tag"  value="0x0531"></setfield>
+    </define>
+
+    <define name="subscriber_message_usage" type="Char">
+      <setfield name="tag" value="0x0132"></setfield>
+    </define>
+
+    <define name="token_volume" type="Integer">
+      <setfield name="tag" value="0x033F"></setfield>
+    </define>
+
+    <define name="token_volume_unit" type="Char">
+      <setfield name="tag" value="0x0140"></setfield>
+    </define>
+
+    <define name="APN" type="String">
+      <setfield name="tag"  value="0x0544"></setfield>
+    </define>
+
+    <define name="change_of_position_ind" type="Char">
+      <setfield name="tag" value="0x0145"></setfield>
+    </define>
+
+    <define name="Charging_id" type="String">
+      <setfield name="tag"  value="0x0546"></setfield>
+    </define>
+
+    <define name="GGSN_address" type="String">
+      <setfield name="tag"  value="0x0547"></setfield>
+    </define>
+
+    <define name="GGSN_address_type" type="Char">
+      <setfield name="tag" value="0x0148"></setfield>
+    </define>
+
+    <define name="GPRS_scenario" type="Char">
+      <setfield name="tag" value="0x0149"></setfield>
+    </define>
+
+    <define name="last_token_volume" type="Char">
+      <setfield name="tag" value="0x014A"></setfield>
+    </define>
+
+    <define name="new_APN_address" type="Char">
+      <setfield name="tag" value="0x014B"></setfield>
+    </define>
+
+    <define name="SGSN_address" type="String">
+      <setfield name="tag"  value="0x054C"></setfield>
+    </define>
+
+    <define name="specific_call_type" type="Char">
+      <setfield name="tag" value="0x014D"></setfield>
+    </define>
+
+    <define name="client_data" type="String">
+      <setfield name="tag" value="0x054E"></setfield>
+    </define>
+
+    <define name="subscriber_imei" type="String">
+      <setfield name="tag" value="0x054F"></setfield>
+    </define>
+
+    <define name="MSC_id" type="Integer">
+      <setfield name="tag" value="0x0350"></setfield>
+    </define>
+
+    <define name="quantity" type="Integer">
+      <setfield name="tag" value="0x033D"></setfield>
+    </define>
+
+    <define name="quantity_unit" type="Char">
+      <setfield name="tag" value="0x013E"></setfield>
+    </define>
+
+    <define name="data_size" type="Integer">
+      <setfield name="tag" value="0x0351"></setfield>
+    </define>
+
+    <define name="data_size_unit" type="Char">
+      <setfield name="tag"  value="0x0152"></setfield>
+    </define>
+
+    <define name="service_class" type="String">
+      <setfield name="tag"  value="0x0553"></setfield>
+    </define>
+
+    <define name="service_id" type="Integer">
+      <setfield name="tag"  value="0x0354"></setfield>
+    </define>
+
+    <define name="service_group" type="Integer">
+      <setfield name="tag"  value="0x0355"></setfield>
+    </define>
+
+    <define name="tariff_code" type="String">
+      <setfield name="tag"  value="0x0543"></setfield>
+    </define>
+
+    <define name="SGSN_address_type" type="Char">
+      <setfield name="tag"  value="0x0156"></setfield>
+    </define>
+
+    <!-- TLV definition for version 1.14 ??? -->
+    <define name="charging_info" type="String">
+      <setfield name="tag"  value="0x0558"></setfield>
+    </define>
+
+    <!-- TLV definition for version 1.15 -->
+    <define name="high_layer_compatibility" type="String">
+      <setfield name="tag"  value="0x0559"></setfield>
+    </define>
+
+    <define name="additional_calling_party_number" type="String">
+      <setfield name="tag"  value="0x055A"></setfield>
+    </define>
+    
+    <define name="additional_calling_party_number_NAI" type="Char">
+      <setfield name="tag"  value="0x015B"></setfield>
+    </define>
+
+    <define name="additional_calling_party_number_NPI" type="Char">
+      <setfield name="tag"  value="0x015C"></setfield>
+    </define>
+
+    <define name="bearer_capability" type="String">
+      <setfield name="tag"  value="0x055D"></setfield>
+    </define>
+
+    <define name="bearer_capability2" type="String">
+      <setfield name="tag"  value="0x055E"></setfield>
+    </define>
+
+    <define name="tele_service_code" type="Char">
+      <setfield name="tag"  value="0x015F"></setfield>
+    </define>
+
+    <define name="TeleServiceCode2" type="Char">
+      <setfield name="tag"  value="0x0160"></setfield>
+    </define>
+
+    <define name="bearer_service_code" type="Char">
+      <setfield name="tag"  value="0x0161"></setfield>
+    </define>
+
+    <define name="BearerServiceCode2" type="Char">
+      <setfield name="tag"  value="0x0162"></setfield>
+    </define>
+
+    <define name="IN_service_indicator" type="Integer">
+      <setfield name="tag"  value="0x0363"></setfield>
+    </define>
+
+    <define name="other_party_vlr_number" type="String">
+      <setfield name="tag"  value="0x0564"></setfield>
+    </define>
+
+    <define name="other_party_CellId_or_SAI" type="String">
+      <setfield name="tag"  value="0x0565"></setfield>
+    </define>
+
+    <define name="other_party_LAI" type="String">
+      <setfield name="tag"  value="0x0566"></setfield>
+    </define>
+
+    <define name="redirection_information" type="String">
+      <setfield name="tag"  value="0x0567"></setfield>
+    </define>
+
+    <define name="Called_IMEI" type="String">
+      <setfield name="tag"  value="0x0568"></setfield>
+    </define>
+
+    <define name="event_type" type="Char">
+      <setfield name="tag"  value="0x0169"></setfield>
+    </define>
+
+    <define name="call_reference_nb" type="String">
+      <setfield name="tag"  value="0x056A"></setfield>
+    </define>
+
+    <define name="classMark2" type="String">
+      <setfield name="tag"  value="0x056B"></setfield>
+    </define>
+
+    <define name="SMSC_address" type="String">
+      <setfield name="tag"  value="0x056C"></setfield>
+    </define>
+
+  </TLV>
+
+  <!-- MBIMessage definitions -->
+  <MBIMessage session-id="CDR_number" out-of-session-id="scp_name">
+    <define name="StartUp_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x01"></TLV>
+    </define> 
+    <define name="StartUp_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x02"></TLV>
+    </define> 
+    <define name="ShutDown_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x03"></TLV>
+    </define> 
+    <define name="ShutDown_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x04"></TLV>
+    </define> 
+    <define name="KeepAlive_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x05"></TLV>
+    </define> 
+    <define name="KeepAlive_response">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x06"></TLV>
+    </define> 
+    <define name="Authorize_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x07"></TLV>
+    </define> 
+    <define name="Authorize_conf">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x08"></TLV>
+    </define> 
+    <define name="Authorize_reject">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x09"></TLV>
+    </define> 
+    <define name="Re_Authorize_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x0A"></TLV>
+    </define> 
+    <define name="End_req">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x0B"></TLV>
+    </define> 
+    <define name="End_ack">
+       <setfield name="msgTag"  value="0xFFFF"></setfield>
+       <TLV name="msg_type"     value="0x0C"></TLV>
+    </define> 
+  </MBIMessage>
+
+</dictionary>
+
+</protocol>
+

@@ -1,0 +1,502 @@
+<!--
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+ (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+
+-->
+
+<!-- orga-dictionnary definition                -->
+<!-- binary protocol definition                 -->
+<!-- seagull configuration file set             -->
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<protocol name="ORGA" 
+          type="binary-separator">
+
+<configuration-parameters>
+</configuration-parameters>
+
+<types>
+  <typedef name="string" type="string" unit="octet"> </typedef>
+</types>
+
+<body-method>
+</body-method>
+
+
+<header name="message" length="message-Length"  type="message-id">
+  <fielddef name="message-length"  size="1" unit="octet"></fielddef>
+  <fielddef name="sequence-number" size="1" unit="octet"></fielddef>
+  <start-length></start-length>
+</header>
+
+<body>
+  <header name="field" field-separator="\t">
+  <!-- field separator defined, no need to idenfity the fields: all are present -->
+  </header>
+</body>
+
+
+<dictionary>
+
+  <field>
+    <define name="version"                type="string">
+    </define>
+    <define name="message-id"             type="string">
+    </define>
+    <define name="traffic-case"           type="string">
+    </define>
+    <define name="tele-service-code"      type="string">
+    </define>
+    <define name="called-party"           type="string">
+    </define>
+    <define name="calling-party"          type="string">
+    </define>
+    <define name="redirecting-party"      type="string">
+    </define>
+    <define name="originating-location"   type="string">
+    </define>
+    <define name="terminating-vlr-number" type="string">
+    </define>
+    <define name="msc-address"            type="string">
+    </define>
+    <define name="tariff-class"           type="string">
+    </define>
+    <define name="imsi"                   type="string">
+    </define>
+    <define name="reference-id"           type="string">
+    </define>
+    <define name="call-duration"          type="string">
+    </define>
+    <define name="start-of-call"          type="string">
+    </define>
+    <define name="set-up-result"          type="string">
+    </define>
+    <define name="chargeable-duration"    type="string">
+    </define>
+    <define name="dialogue-id"            type="string">
+    </define>
+    <define name="invoke-id"              type="string">
+    </define>
+    <define name="b-party-start-of-call"  type="string">
+    </define>
+    <define name="result-code"            type="string">
+    </define>
+    <define name="ignore-set-up-errors"   type="string">
+    </define>
+    <define name="language-code"          type="string">
+    </define>
+    <define name="time-segment"           type="string">
+    </define>
+    <define name="maximum-call-time"      type="string">
+    </define>
+    <define name="flow-control-command"   type="string">
+    </define>
+    <define name="reserved-req-17"        type="string">
+    </define>
+    <define name="reserved-req-18"        type="string">
+    </define>
+    <define name="reserved-req-19"        type="string">
+    </define>
+    <define name="reserved-req-20"        type="string">
+    </define>
+    <define name="reserved-req-21"        type="string">
+    </define>
+    <define name="reserved-req-22"        type="string">
+    </define>
+    <define name="reserved-req-23"        type="string">
+    </define>
+    <define name="reserved-req-24"        type="string">
+    </define>
+    <define name="reserved-req-25"        type="string">
+    </define>
+    <define name="reserved-req-26"        type="string">
+    </define>
+    <define name="reserved-req-27"        type="string">
+    </define>
+    <define name="reserved-req-28"        type="string">
+    </define>
+    <define name="reserved-req-29"        type="string">
+    </define>
+    <define name="reserved-req-30"        type="string">
+    </define>
+    <define name="reserved-req-31"        type="string">
+    </define>
+    <define name="reserved-req-32"        type="string">
+    </define>
+    <define name="reserved-req-36"        type="string">
+    </define>
+    <define name="reserved-resp-5"        type="string">
+    </define>
+    <define name="reserved-resp-7"        type="string">
+    </define>
+    <define name="reserved-resp-9"        type="string">
+    </define>
+    <define name="reserved-resp-10"        type="string">
+    </define>
+    <define name="reserved-resp-11"        type="string">
+    </define>
+    <define name="reserved-resp-12"        type="string">
+    </define>
+    <define name="reserved-resp-13"        type="string">
+    </define>
+    <define name="reserved-resp-14"        type="string">
+    </define>
+    <define name="reserved-resp-15"        type="string">
+    </define>
+    <define name="reserved-resp-16"        type="string">
+    </define>
+    <define name="reserved-resp-17"        type="string">
+    </define>
+    <define name="reserved-resp-18"        type="string">
+    </define>
+    <define name="reserved-resp-19"        type="string">
+    </define>
+    <define name="reserved-resp-20"        type="string">
+    </define>
+    <define name="reserved-resp-21"        type="string">
+    </define>
+    <define name="reserved-resp-22"        type="string">
+    </define>
+    <define name="reserved-resp-23"        type="string">
+    </define>
+    <define name="reserved-resp-24"        type="string">
+    </define>
+    <define name="reserved-resp-25"        type="string">
+    </define>
+    <define name="reserved-resp-26"        type="string">
+    </define>
+    <define name="reserved-resp-27"        type="string">
+    </define>
+    <define name="reserved-resp-28"        type="string">
+    </define>
+    <define name="reserved-resp-29"        type="string">
+    </define>
+    <define name="reserved-resp-30"        type="string">
+    </define>
+    <define name="reserved-resp-31"        type="string">
+    </define>
+    <define name="reserved-resp-32"        type="string">
+    </define>
+    <define name="reserved-resp-35"        type="string">
+    </define>
+  </field>
+
+
+  <message session-id="dialogue-id" session-id-position="33" 
+           out-of-session-id="version">
+    <define name="first-query-req">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="0"></field>
+       <field name="traffic-case"           value=""></field>
+       <field name="tele-service-code"      value=""></field>
+       <field name="called-party"           value=""></field>
+       <field name="calling-party"          value=""></field>
+       <field name="redirecting-party"      value=""></field>
+       <field name="originating-location"   value=""></field>
+       <field name="terminating-vlr-number" value=""></field>
+       <field name="msc-address"            value=""></field>
+       <field name="tariff-class"           value=""></field>
+       <field name="imsi"                   value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="call-duration"          value=""></field>
+       <field name="start-of-call"          value=""></field>
+       <field name="set-up-result"          value=""></field>
+       <field name="chargeable-duration"    value=""></field>
+       <field name="reserved-req-17"        value=""></field>
+       <field name="reserved-req-18"        value=""></field>
+       <field name="reserved-req-19"        value=""></field>
+       <field name="reserved-req-20"        value=""></field>
+       <field name="reserved-req-21"        value=""></field>
+       <field name="reserved-req-22"        value=""></field>
+       <field name="reserved-req-23"        value=""></field>
+       <field name="reserved-req-24"        value=""></field>
+       <field name="reserved-req-25"        value=""></field>
+       <field name="reserved-req-26"        value=""></field>
+       <field name="reserved-req-27"        value=""></field>
+       <field name="reserved-req-28"        value=""></field>
+       <field name="reserved-req-29"        value=""></field>
+       <field name="reserved-req-30"        value=""></field>
+       <field name="reserved-req-31"        value=""></field>
+       <field name="reserved-req-32"        value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="b-party-start-of-call"  value=""></field>
+       <field name="reserved-req-36"        value=""></field>
+    </define>
+
+    <define name="first-query-resp">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="0"></field>
+       <field name="result-code"            value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="ignore-set-up-errors"   value=""></field>
+       <field name="reserved-resp-5"        value=""></field>
+       <field name="language-code"          value=""></field>
+       <field name="reserved-resp-7"        value=""></field>
+       <field name="time-segment"           value=""></field>
+       <field name="reserved-resp-9"        value=""></field>
+       <field name="reserved-resp-10"       value=""></field>
+       <field name="reserved-resp-11"       value=""></field>
+       <field name="reserved-resp-12"       value=""></field>
+       <field name="reserved-resp-13"       value=""></field>
+       <field name="reserved-resp-14"       value=""></field>
+       <field name="reserved-resp-15"       value=""></field>
+       <field name="reserved-resp-16"       value=""></field>
+       <field name="reserved-resp-17"       value=""></field>
+       <field name="reserved-resp-18"       value=""></field>
+       <field name="reserved-resp-19"       value=""></field>
+       <field name="reserved-resp-20"       value=""></field>
+       <field name="reserved-resp-21"       value=""></field>
+       <field name="reserved-resp-22"       value=""></field>
+       <field name="reserved-resp-23"       value=""></field>
+       <field name="reserved-resp-24"       value=""></field>
+       <field name="reserved-resp-25"       value=""></field>
+       <field name="reserved-resp-26"       value=""></field>
+       <field name="reserved-resp-27"       value=""></field>
+       <field name="reserved-resp-28"       value=""></field>
+       <field name="reserved-resp-29"       value=""></field>
+       <field name="reserved-resp-30"       value=""></field>
+       <field name="reserved-resp-31"       value=""></field>
+       <field name="reserved-resp-32"       value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="reserved-resp-35"       value=""></field>
+       <field name="maximum-call-time"      value=""></field>
+    </define>
+
+
+    <define name="next-query-req">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="1"></field>
+       <field name="traffic-case"           value=""></field>
+       <field name="tele-service-code"      value=""></field>
+       <field name="called-party"           value=""></field>
+       <field name="calling-party"          value=""></field>
+       <field name="redirecting-party"      value=""></field>
+       <field name="originating-location"   value=""></field>
+       <field name="terminating-vlr-number" value=""></field>
+       <field name="msc-address"            value=""></field>
+       <field name="tariff-class"           value=""></field>
+       <field name="imsi"                   value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="call-duration"          value=""></field>
+       <field name="start-of-call"          value=""></field>
+       <field name="set-up-result"          value=""></field>
+       <field name="chargeable-duration"    value=""></field>
+       <field name="reserved-req-17"        value=""></field>
+       <field name="reserved-req-18"        value=""></field>
+       <field name="reserved-req-19"        value=""></field>
+       <field name="reserved-req-20"        value=""></field>
+       <field name="reserved-req-21"        value=""></field>
+       <field name="reserved-req-22"        value=""></field>
+       <field name="reserved-req-23"        value=""></field>
+       <field name="reserved-req-24"        value=""></field>
+       <field name="reserved-req-25"        value=""></field>
+       <field name="reserved-req-26"        value=""></field>
+       <field name="reserved-req-27"        value=""></field>
+       <field name="reserved-req-28"        value=""></field>
+       <field name="reserved-req-29"        value=""></field>
+       <field name="reserved-req-30"        value=""></field>
+       <field name="reserved-req-31"        value=""></field>
+       <field name="reserved-req-32"        value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="b-party-start-of-call"  value=""></field>
+       <field name="reserved-req-36"        value=""></field>
+    </define>
+
+    <define name="next-query-resp">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="1"></field>
+       <field name="result-code"            value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="ignore-set-up-errors"   value=""></field>
+       <field name="reserved-resp-5"        value=""></field>
+       <field name="language-code"          value=""></field>
+       <field name="reserved-resp-7"        value=""></field>
+       <field name="time-segment"           value=""></field>
+       <field name="reserved-resp-9"        value=""></field>
+       <field name="reserved-resp-10"       value=""></field>
+       <field name="reserved-resp-11"       value=""></field>
+       <field name="reserved-resp-12"       value=""></field>
+       <field name="reserved-resp-13"       value=""></field>
+       <field name="reserved-resp-14"       value=""></field>
+       <field name="reserved-resp-15"       value=""></field>
+       <field name="reserved-resp-16"       value=""></field>
+       <field name="reserved-resp-17"       value=""></field>
+       <field name="reserved-resp-18"       value=""></field>
+       <field name="reserved-resp-19"       value=""></field>
+       <field name="reserved-resp-20"       value=""></field>
+       <field name="reserved-resp-21"       value=""></field>
+       <field name="reserved-resp-22"       value=""></field>
+       <field name="reserved-resp-23"       value=""></field>
+       <field name="reserved-resp-24"       value=""></field>
+       <field name="reserved-resp-25"       value=""></field>
+       <field name="reserved-resp-26"       value=""></field>
+       <field name="reserved-resp-27"       value=""></field>
+       <field name="reserved-resp-28"       value=""></field>
+       <field name="reserved-resp-29"       value=""></field>
+       <field name="reserved-resp-30"       value=""></field>
+       <field name="reserved-resp-31"       value=""></field>
+       <field name="reserved-resp-32"       value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="reserved-resp-35"       value=""></field>
+       <field name="maximum-call-time"      value=""></field>
+    </define>
+
+    <define name="call-complete-req">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="2"></field>
+       <field name="traffic-case"           value=""></field>
+       <field name="tele-service-code"      value=""></field>
+       <field name="called-party"           value=""></field>
+       <field name="calling-party"          value=""></field>
+       <field name="redirecting-party"      value=""></field>
+       <field name="originating-location"   value=""></field>
+       <field name="terminating-vlr-number" value=""></field>
+       <field name="msc-address"            value=""></field>
+       <field name="tariff-class"           value=""></field>
+       <field name="imsi"                   value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="call-duration"          value=""></field>
+       <field name="start-of-call"          value=""></field>
+       <field name="set-up-result"          value=""></field>
+       <field name="chargeable-duration"    value=""></field>
+       <field name="reserved-req-17"        value=""></field>
+       <field name="reserved-req-18"        value=""></field>
+       <field name="reserved-req-19"        value=""></field>
+       <field name="reserved-req-20"        value=""></field>
+       <field name="reserved-req-21"        value=""></field>
+       <field name="reserved-req-22"        value=""></field>
+       <field name="reserved-req-23"        value=""></field>
+       <field name="reserved-req-24"        value=""></field>
+       <field name="reserved-req-25"        value=""></field>
+       <field name="reserved-req-26"        value=""></field>
+       <field name="reserved-req-27"        value=""></field>
+       <field name="reserved-req-28"        value=""></field>
+       <field name="reserved-req-29"        value=""></field>
+       <field name="reserved-req-30"        value=""></field>
+       <field name="reserved-req-31"        value=""></field>
+       <field name="reserved-req-32"        value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="b-party-start-of-call"  value=""></field>
+       <field name="reserved-req-36"        value=""></field>
+    </define>
+
+    <define name="call-complete-resp">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="2"></field>
+       <field name="result-code"            value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="ignore-set-up-errors"   value=""></field>
+       <field name="reserved-resp-5"        value=""></field>
+       <field name="language-code"          value=""></field>
+       <field name="reserved-resp-7"        value=""></field>
+       <field name="time-segment"           value=""></field>
+       <field name="reserved-resp-9"        value=""></field>
+       <field name="reserved-resp-10"       value=""></field>
+       <field name="reserved-resp-11"       value=""></field>
+       <field name="reserved-resp-12"       value=""></field>
+       <field name="reserved-resp-13"       value=""></field>
+       <field name="reserved-resp-14"       value=""></field>
+       <field name="reserved-resp-15"       value=""></field>
+       <field name="reserved-resp-16"       value=""></field>
+       <field name="reserved-resp-17"       value=""></field>
+       <field name="reserved-resp-18"       value=""></field>
+       <field name="reserved-resp-19"       value=""></field>
+       <field name="reserved-resp-20"       value=""></field>
+       <field name="reserved-resp-21"       value=""></field>
+       <field name="reserved-resp-22"       value=""></field>
+       <field name="reserved-resp-23"       value=""></field>
+       <field name="reserved-resp-24"       value=""></field>
+       <field name="reserved-resp-25"       value=""></field>
+       <field name="reserved-resp-26"       value=""></field>
+       <field name="reserved-resp-27"       value=""></field>
+       <field name="reserved-resp-28"       value=""></field>
+       <field name="reserved-resp-29"       value=""></field>
+       <field name="reserved-resp-30"       value=""></field>
+       <field name="reserved-resp-31"       value=""></field>
+       <field name="reserved-resp-32"       value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="reserved-resp-35"       value=""></field>
+       <field name="maximum-call-time"      value=""></field>
+    </define>
+
+    <define name="flow-control">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value="3"></field>
+       <field name="flow-control-command"   value=""></field>
+    </define>
+
+    <!-- this message is not correct -->
+    <define name="error-response">
+       <field name="version"                value="1.02.01"></field>
+       <field name="message-id"             value=""></field>
+       <field name="result-code"            value=""></field>
+       <field name="reference-id"           value=""></field>
+       <field name="ignore-set-up-errors"   value=""></field>
+       <field name="reserved-resp-5"        value=""></field>
+       <field name="language-code"          value=""></field>
+       <field name="reserved-resp-7"        value=""></field>
+       <field name="time-segment"           value=""></field>
+       <field name="reserved-resp-9"        value=""></field>
+       <field name="reserved-resp-10"       value=""></field>
+       <field name="reserved-resp-11"       value=""></field>
+       <field name="reserved-resp-12"       value=""></field>
+       <field name="reserved-resp-13"       value=""></field>
+       <field name="reserved-resp-14"       value=""></field>
+       <field name="reserved-resp-15"       value=""></field>
+       <field name="reserved-resp-16"       value=""></field>
+       <field name="reserved-resp-17"       value=""></field>
+       <field name="reserved-resp-18"       value=""></field>
+       <field name="reserved-resp-19"       value=""></field>
+       <field name="reserved-resp-20"       value=""></field>
+       <field name="reserved-resp-21"       value=""></field>
+       <field name="reserved-resp-22"       value=""></field>
+       <field name="reserved-resp-23"       value=""></field>
+       <field name="reserved-resp-24"       value=""></field>
+       <field name="reserved-resp-25"       value=""></field>
+       <field name="reserved-resp-26"       value=""></field>
+       <field name="reserved-resp-27"       value=""></field>
+       <field name="reserved-resp-28"       value=""></field>
+       <field name="reserved-resp-29"       value=""></field>
+       <field name="reserved-resp-30"       value=""></field>
+       <field name="reserved-resp-31"       value=""></field>
+       <field name="reserved-resp-32"       value=""></field>
+       <field name="dialogue-id"            value=""></field>
+       <field name="invoke-id"              value=""></field>
+       <field name="reserved-resp-35"       value=""></field>
+       <field name="maximum-call-time"      value=""></field>
+    </define>
+  </message>
+
+
+</dictionary>
+
+</protocol>
+
+
+
+
+
+
+
+

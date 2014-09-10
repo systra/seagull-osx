@@ -1,0 +1,72 @@
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<protocol name="h225-registration-v1" type="binary-body-not-interpreted">
+
+<types>
+  <typedef name="String" type="string" unit="octet"> </typedef>
+</types>
+
+<header name="message" length="" type="msg-type" transport-driven="yes">
+
+  <!-- Message Type - CHOICE Alternative value (H.225 RAS Ch x.x) -->
+  <!-- The bit 8 is extension field indicator
+        If set to 0 it indicates normal value.
+          the 5 next bits indicate the choice alternative
+          and the 2 last bits are part of optional bits info
+        Note that in this case the 2 last bits are used for
+        optional field presence indication
+        If set to 1 it indicates extenstion value
+          the bit 7 need to be set to 0
+          the last 6 bits indicates extended alternative choice 
+    -->
+  <fielddef name="msg-type" size="1" unit="octet" mask="124"> </fielddef>
+  
+  <!-- this octet is used to indicate optional field presence and
+        specific padding bit 
+       Note: in our case this octet is always present 
+  -->
+  <fielddef name="optional-bits" size="1" unit="octet"> </fielddef>
+  
+  <!-- Sequence Number of message (H.225 RAS Ch x.x) -->
+  <fielddef name="requestSeqNum" size="2" unit="octet"> </fielddef>
+
+</header>
+
+<body>
+   <header name="parameter"></header>
+</body>
+
+<dictionary>
+
+  <!-- body define(s) not present here -->
+  <parameter>
+  </parameter>
+
+  <message session-id="requestSeqNum" out-of-session-id="requestSeqNum">
+     <!-- Gatekeeper Request (H.225 Ch x.x.x) -->
+     <define name="GateKeeperRequest">
+       <setfield name="msg-type"      value="0x00"></setfield>
+       <setfield name="optional-bits" value="0x20"></setfield>
+     </define>
+     <define name="GateKeeperConfirm">
+       <setfield name="msg-type" value="0x04"></setfield>
+       <setfield name="optional-bits" value="0x80"></setfield>
+     </define>
+     <define name="RegistrationRequest">
+       <setfield name="msg-type" value="0x0c"></setfield>
+      <!-- 1 opt (terminalAlias) 1 opt (gatekeeperIdentifier) 
+           00 0000 padding -->
+       <setfield name="optional-bits" value="0xc0"></setfield>
+     </define>
+     <define name="RegistrationConfirm">
+       <setfield name="msg-type" value="0x10"></setfield>
+       <setfield name="optional-bits" value="0xc0"></setfield>
+     </define>
+  </message>
+
+</dictionary>
+
+</protocol>
+
+

@@ -1,0 +1,140 @@
+<!--
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+ (c)Copyright 2006 Hewlett-Packard Development Company, LP.
+
+-->
+
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<scenario>
+
+<counter>
+  <counterdef name="dialog-id-counter" init="1"></counterdef>
+  <counterdef name="sequence-number-counter" init="1"></counterdef>
+</counter>
+
+<traffic>
+
+   <send channel="channel-1">
+    <action>
+     <set-value name="sequence-number"
+                 format="$(sequence-number-counter)">
+     </set-value>
+     <set-value name="dialogue-id"
+                format="$(dialog-id-counter)">
+     </set-value>
+    </action>
+    <message name="first-query-req">
+     <!-- body -->
+     <field name="traffic-case"           value="3"></field>
+     <field name="tele-service-code"      value="0"></field>
+     <field name="called-party"           value="7725321"></field>
+     <field name="calling-party"          value="3771123"></field>
+     <field name="originating-location"   value="38591"></field>
+     <field name="msc-address"            value="38591016"></field>
+     <field name="imsi"                   value="700171123"></field>
+    </message>
+    <action>
+     <store name="DIALOG-ID" entity="dialogue-id"></store>
+     <inc-counter name="dialog-id-counter"></inc-counter>
+     <inc-counter name="sequence-number-counter"></inc-counter>
+    </action>
+   </send>
+
+   <receive channel="channel-1">
+     <message name="first-query-resp">
+     </message>
+     <action>
+      <store name="REFERENCE-ID" entity="reference-id"></store>
+     </action>
+   </receive>
+
+
+   <send channel="channel-1">
+    <action>
+      <restore name="DIALOG-ID" entity="dialogue-id"></restore>
+      <restore name="REFERENCE-ID" entity="reference-id"></restore>
+      <set-value name="sequence-number"
+                 format="$(sequence-number-counter)">
+     </set-value>
+    </action>
+    <message name="next-query-req">
+     <!-- body -->
+     <field name="traffic-case"           value="3"></field>
+     <field name="tele-service-code"      value="0"></field>
+     <field name="called-party"           value="7725321"></field>
+     <field name="calling-party"          value="3771123"></field>
+     <field name="originating-location"   value="38591"></field>
+     <field name="msc-address"            value="38591016"></field>
+     <field name="imsi"                   value="700171123"></field>
+     <field name="call-duration"          value="70"></field>
+     <field name="start-of-call"          value="20020618165505"></field>
+    </message>
+    <action>
+     <inc-counter name="sequence-number-counter"></inc-counter>
+    </action>
+   </send>
+
+   <receive channel="channel-1">
+     <message name="next-query-resp">
+     </message>
+   </receive>
+
+
+   <send channel="channel-1">
+    <action>
+      <restore name="DIALOG-ID" entity="dialogue-id"></restore>
+      <restore name="REFERENCE-ID" entity="reference-id"></restore>
+      <set-value name="sequence-number"
+                 format="$(sequence-number-counter)">
+     </set-value>
+    </action>
+    <message name="call-complete-req">
+     <!-- body -->
+     <field name="traffic-case"           value="3"></field>
+     <field name="tele-service-code"      value="0"></field>
+     <field name="called-party"           value="7725321"></field>
+     <field name="calling-party"          value="3771123"></field>
+     <field name="originating-location"   value="38591"></field>
+     <field name="msc-address"            value="38591016"></field>
+     <field name="imsi"                   value="700171123"></field>
+     <field name="start-of-call"          value="20020618165505"></field>
+     <field name="set-up-result"          value="1"></field>
+     <field name="chargeable-duration"    value="90"></field>
+    </message>
+    <action>
+     <inc-counter name="sequence-number-counter"></inc-counter>
+    </action>
+   </send>
+
+   <receive channel="channel-1">
+     <message name="call-complete-resp">
+     </message>
+   </receive>
+
+</traffic>
+
+</scenario>
+
+
+
+
+
+
+
+
+
+
