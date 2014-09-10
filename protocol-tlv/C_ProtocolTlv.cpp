@@ -6512,10 +6512,6 @@ int  C_ProtocolTlv::update_ctxt_length_decode (C_ProtocolContext *P_protocol_con
   int L_ret = 0 ;
   for (L_i = 0 ; L_i < m_nb_protocol_ctxt_values ; L_i++) {
     P_protocol_context->m_ctxt_val_table[L_i].m_ctxt_value.m_value.m_val_number -= P_data_size ;
-    if (P_protocol_context->m_ctxt_val_table[L_i].m_ctxt_value.m_value.m_val_number <0 ) {
-      L_ret = -1;
-      break;
-    }
   }
   return (L_ret);
 }

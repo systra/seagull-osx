@@ -88,12 +88,6 @@ int C_ProtocolContext::update_ctxt_values_decode(int P_nbCtx,
   for (L_i = 0 ; L_i < P_nbCtx; L_i++) {
     m_ctxt_val_table[P_idTable[L_i]].m_ctxt_value.m_value.m_val_number 
       -= P_size ;
-    
-    if (m_ctxt_val_table[P_idTable[L_i]].m_ctxt_value.m_value.m_val_number 
-	< 0) {
-      L_ret = -1 ;
-      break;
-    }
   }
 
   return (L_ret);

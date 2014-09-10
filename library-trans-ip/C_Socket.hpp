@@ -182,6 +182,7 @@ public:
                              size_t             P_size);
   virtual int _call_listen (int P_max) ;
 
+  using C_Socket::_open;
   virtual int        _open (size_t P_buffer_size, C_ProtocolBinaryFrame *P_protocol) ;
   size_t             received_buffer  (unsigned char  *P_data, 
 				       size_t          P_size_buf,
@@ -214,6 +215,7 @@ public:
   C_SocketServer (C_SocketServer& P_Socket);
   virtual ~C_SocketServer();
 
+  using C_Socket::_open;
   virtual int _open (size_t P_buffer_size, C_ProtocolBinaryFrame *P_protocol) ;
   virtual int _read ();
 
@@ -237,6 +239,7 @@ public:
   C_SocketClient(C_SocketClient &P_Socket);
   virtual ~C_SocketClient() ;
 
+  using C_Socket::_open;
   virtual int _open (T_pOpenStatus P_status,
                      size_t        P_buffer_size,
                      C_ProtocolBinaryFrame *P_protocol);

@@ -21,6 +21,7 @@
 #define _STRING_T_HPP
 
 #include <string>
+#include <string.h>
 
 #if defined(__hpux)
 #define string_t  string

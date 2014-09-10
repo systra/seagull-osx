@@ -52,8 +52,8 @@ private :
 
   C_Transport         *m_transport ;
   size_t               m_max_event_nb ;
-  struct timeval       m_select_timeout ;
-  C_GeneratorConfig   *m_config ;
+  //struct timeval       m_select_timeout ;
+  //C_GeneratorConfig   *m_config ;
   T_SelectDef          m_call_select ;
   T_pC_TransportEvent  m_events ;
   C_ProtocolControl   *m_protocol_ctrl  ;

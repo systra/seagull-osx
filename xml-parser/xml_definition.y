@@ -35,7 +35,7 @@
   extern FILE *yyin    ;
   extern int  yylineno ;
 
-#if defined(__linux__) || defined(__CYGWIN__)
+#if defined(__linux__) || defined(__CYGWIN__) || defined(__APPLE__)
   extern int  yyparse ();
   extern int  yylex () ;
   extern void yyerror (const char*) ;

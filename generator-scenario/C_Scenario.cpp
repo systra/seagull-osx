@@ -483,10 +483,7 @@ T_exeCode C_Scenario::execute_cmd (T_pCallContext P_callCtxt,
                   << " command execution");
     break ;
   }
-if(L_exeCode >19 || L_exeCode < 0){
-    if(L_exeCode >19)
-    P_callCtxt -> set_cmd(L_exeCode-1-20);//will increase with E_EXE_NOERROR
-    else
+if(L_exeCode < 0){
     P_callCtxt -> set_cmd(L_exeCode -1); //will increase with E_EXE_NOERROR (by call to next_cmd())
   L_exeCode = E_EXE_NOERROR;
   }
@@ -820,7 +817,7 @@ T_exeCode C_Scenario::execute_action(T_pCmd_scenario P_pCmd,
                                           P_callCtxt,
                                           P_msg,
                                           P_ref);
-    if(L_exeCode > 19 || L_exeCode < 0){
+    if(L_exeCode < 0){
         L_BRANCH = true;
         L_exeCodeBranch = L_exeCode;
     }

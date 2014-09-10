@@ -162,7 +162,7 @@ T_ValueData  C_SetValueAction::search_memory(T_pCallContext  P_callCtxt,
     P_reset_value = true ;
 
     }
-    else if ((L_mem.m_type == E_TYPE_STRUCT) )  {
+    else if (L_mem.m_type == E_TYPE_STRUCT)  {
 
     P_msg -> get_field_value(m_id, m_occurence,
                              0,0,
