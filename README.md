@@ -1,7 +1,7 @@
 seagull-osx
 ===========
 
-### This is the fork of [Seagull](http://gull.sourceforge.net/) (1.8.2), patched for Mac OS X 10.9.4 (Mavericks) and Apple LLVM version 5.1.1 compiler.
+### This is the fork of [Seagull](http://gull.sourceforge.net/) (1.8.2), patched for Mac OS X 10.9.4 (Mavericks) and Apple LLVM version 5.1.1 compiler (also working on OS X 10.10 Yosemite).
 
 ## Building
 
