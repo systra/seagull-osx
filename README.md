@@ -3,6 +3,7 @@ seagull-osx
 
 ### This is the fork of [Seagull](http://gull.sourceforge.net/) (1.8.2), patched for Mac OS X 10.9.4 (Mavericks) and Apple LLVM version 5.1.1 compiler.
 
+## Building
 
 Seagull is a free and Open Source (GPL) multi-protocol 
 traffic generator test tool. 
@@ -27,3 +28,10 @@ Optionally you can run:
 	./install.ksh
 	
 to copy Seagull binaries and config files as suggested in `INSTALL.TXT` and perform the remaining actions, if needed.
+
+## Using binary package
+
+### Set environment
+
+	export LD_LIBRARY_PATH=/opt/seagull/bin
+
