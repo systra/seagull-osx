@@ -31,7 +31,18 @@ to copy Seagull binaries and config files as suggested in `INSTALL.TXT` and perf
 
 ## Using binary package
 
-### Set environment
+Binary is ready for use *OS X* (tested on Mavericks and Yosemite).
 
-	export LD_LIBRARY_PATH=/opt/seagull/bin
+1. Extract binary package (for example to: `/opt/seagull` directory`)
+2. Set environment paths
+
+  - Add Seagull's libraries to `LD_LIBRARY_PATH`:
+  
+	`export LD_LIBRARY_PATH=/opt/seagull/bin`
+
+  - You can also add Seagull executable to `PATH`:
+
+	`export PATH=/opt/seagull/bin:$PATH`
+
+You can start using seagull now!
 
