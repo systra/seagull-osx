@@ -272,6 +272,8 @@ iostream_output& operator<<(iostream_output&   P_ostream,
 
 #endif
 
+#ifndef HAVE_HTONLL
+
 // Define new ntohll and htonll function
 T_UnsignedInteger64 ntohll(T_UnsignedInteger64 P_val) {
 
@@ -290,5 +292,7 @@ T_UnsignedInteger64 htonll(T_UnsignedInteger64 P_val) {
   return (((T_UnsignedInteger64)htonl(P_val)) << 32) + htonl(P_val >> 32);
 #endif
 }
+
+#endif
 
 // End of file

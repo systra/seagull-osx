@@ -91,9 +91,11 @@ typedef long          T_Integer32, *T_pInteger32;
 
 #endif // LONG_MAX
 
+#ifndef HAVE_HTONLL
 // Define the ntoh and hton function for long long type
 T_UnsignedInteger64 ntohll(T_UnsignedInteger64 P_val);
 T_UnsignedInteger64 htonll(T_UnsignedInteger64 P_val);
+#endif
 
 #if defined(__hpux)
 #include "iostream_t.hpp"
