@@ -18,12 +18,16 @@ Make sure to set environment variables before compilation:
 
 	export LC_CTYPE=C 
 	export LANG=C
+
+**For XCode 7.x use command below before buliding step!**
+
+	export CFLAGS="-DHAVE_HTONLL"
 	
 and then start building:
 
 	./build.ksh -target all
 	
-Optionally you can run:
+After successfull building you can use binaries from *bin *directory or optionally run install script:
 
 	./install.ksh
 	
